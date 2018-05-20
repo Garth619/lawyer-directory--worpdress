@@ -30,6 +30,7 @@ add_theme_support('post-thumbnails');
 
  	
       
+/*
    	 
 	function lawfirm() {    
     	$args = array(    
@@ -105,6 +106,7 @@ add_theme_support('post-thumbnails');
     'rewrite' => array( 'slug' => 'practicareas' ),
   ));
 }
+*/
 
 
 		
