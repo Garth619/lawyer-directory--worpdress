@@ -1,6 +1,19 @@
 <?php 
 
 
+if (function_exists('register_sidebars')) {
+    register_sidebar(array(
+        'name' => 'Recent Posts',
+        'id' => 'sidebar',
+        'description' => '',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widgettitle">',
+        'after_title' => '</h3>'
+    ));
+    
+    
+ }
 
 
 /* Add Theme Support Page Thumbnails
@@ -85,6 +98,7 @@ add_theme_support('post-thumbnails');
     'hierarchical' => false,
     'labels' => $labels,
     'show_ui' => true,
+    'show_in_rest' => true,
     'show_admin_column' => true,
     'update_count_callback' => '_update_post_term_count',
     'query_var' => true,

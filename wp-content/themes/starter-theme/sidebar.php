@@ -1,5 +1,5 @@
 
-	<?php // dynamic_sidebar( 'sidebar' ); ?>
+	<?php  dynamic_sidebar( 'sidebar' ); ?>
 			
 	<?php // dynamic_sidebar( 'category_sidebar' ); ?>
 	
