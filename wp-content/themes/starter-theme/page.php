@@ -11,6 +11,47 @@
 
 <?php get_sidebar(); ?>
 
+<?php 
+	
+	$state = 112;
+	$stateTags = array();
+
+	
+	$query_args = array (
+    'post_type' => 'lawfirm',
+    'tax_query' => array(
+        array(
+          'taxonomy'  => 'lawfirm_locations',
+           'field'     => 'term_id',
+           'terms'     => $state,
+				)
+			),
+		);
+	
+	$querystate = new WP_Query( $query_args );
+	
+		if ( $querystate->have_posts() ) {
+ 
+			while ( $querystate->have_posts() ) {
+ 
+        $querystate->the_post();
+        
+        	if( has_term('', 'lawfirm_practiceareas') ){
+        
+						$term_list = wp_get_post_terms($post->ID, 'lawfirm_practiceareas', array("fields" => "ids"));
+
+						$workbitch = array_unique(array_merge($stateTags,$term_list), SORT_REGULAR);
+				
+				}
+			}
+ 		}
+ 
+wp_reset_postdata(); ?>
+
+<?php echo $state;?>
+
+<?php print_r($workbitch);?>
+
 
 
 <?php // http://www.joshstauffer.com/wordpress-get-tags-for-a-specific-category/
@@ -43,20 +84,20 @@ wp_tag_cloud( $args );
 
 
 
-
 <?php $args = array(
     'post_type' => 'lawfirm',
+    
     'tax_query' => array(
         'relation' => 'AND',
         array(
             'taxonomy' => 'lawfirm_locations',
-            'field'    => 'slug',
-            'terms'    => array( 'california' ),
+            'field'    => 'term_id',
+            'terms'    => array( '112' ),
         ),
         array(
             'taxonomy' => 'lawfirm_practiceareas',
-            'field'    => 'slug',
-            'terms'    => array( 'business' ),
+            'field'    => 'term_id',
+            'terms'    => array( '80' ),
         ),
     ),
 );
@@ -72,7 +113,7 @@ if ( $query->have_posts() ) {
  
         $query->the_post();
  
-        the_title();
+        the_title(); get_the_ID();
  
     }
  
@@ -147,6 +188,6 @@ $parent = $term->parent;
 ?>
 
 
-
+<?php echo get_the_term_list( $post->ID, 'lawfirm_practiceareas', 'People: ', ', ' ); ?>
 
 <?php get_footer(); ?>

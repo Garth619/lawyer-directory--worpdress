@@ -29,11 +29,13 @@ add_theme_support('post-thumbnails');
 // states
 
 function list_states() {
+		
+		$parent = 111;
 	
 		$terms = get_terms(array(
 			'taxonomy' => 'lawfirm_locations',
 			'orderby'  => 'name',
-			'parent' => 111,
+			'parent' => $parent,
 			'hide_empty' => true
 		));
 		
@@ -41,15 +43,75 @@ function list_states() {
 
 }
 
-
-add_action( 'rest_api_init', function () {
+function list_states_route() {
 	register_rest_route( 'locations/v1', '/states/', array(
 		'methods' => 'GET',
-		'callback' => 'list_states',
-	) );
-} );
+		'callback' => 'list_states',)
+	);
+} 
 
 
+add_action( 'rest_api_init', 'list_states_route');
+
+
+
+// Cities with Practice Areas
+
+function cites_with_pa() {
+	
+	global $post;
+	
+	$state = 112;
+	$stateTags = array();
+
+	
+	$query_args = array (
+    'post_type' => 'lawfirm',
+    'tax_query' => array(
+        array(
+          'taxonomy'  => 'lawfirm_locations',
+           'field'     => 'term_id',
+           'terms'     => $state,
+				)
+			),
+		);
+	
+	$querystate = new WP_Query( $query_args );
+	
+		if ( $querystate->have_posts() ) {
+ 
+			while ( $querystate->have_posts() ) {
+ 
+        $querystate->the_post();
+        
+        	if( has_term('', 'lawfirm_practiceareas') ){
+        
+						$term_list = wp_get_post_terms($post->ID, 'lawfirm_practiceareas', array("fields" => "ids"));
+
+						$statetags = array_unique(array_merge($stateTags,$term_list), SORT_REGULAR);
+				
+				}
+			}
+ 		}
+ 
+ 		wp_reset_postdata();
+ 		
+ 		
+ 		
+ 		return rest_ensure_response($statetags);
+	
+}
+
+
+function cites_with_pa_route() {
+	register_rest_route( 'locations/v1', '/cities', array(
+		'methods' => 'GET',
+		'callback' => 'cites_with_pa',)
+	);
+}
+
+
+add_action( 'rest_api_init', 'cites_with_pa_route' );
 
 
 //////////// practice
