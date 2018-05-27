@@ -13,7 +13,7 @@
 
 <?php 
 	
-	$state = 112;
+	$state = 124;
 	$stateTags = array();
 
 	
@@ -27,6 +27,8 @@
 				)
 			),
 		);
+		
+	print_r($state);
 	
 	$querystate = new WP_Query( $query_args );
 	
@@ -41,6 +43,8 @@
 						$term_list = wp_get_post_terms($post->ID, 'lawfirm_practiceareas', array("fields" => "ids"));
 
 						$workbitch = array_unique(array_merge($stateTags,$term_list), SORT_REGULAR);
+						
+						print_r($workbitch);
 				
 				}
 			}
@@ -48,9 +52,9 @@
  
 wp_reset_postdata(); ?>
 
-<?php echo $state;?>
+<?php // echo $state;?>
 
-<?php print_r($workbitch);?>
+<?php //print_r($workbitch);?>
 
 
 
@@ -189,5 +193,36 @@ $parent = $term->parent;
 
 
 <?php echo get_the_term_list( $post->ID, 'lawfirm_practiceareas', 'People: ', ', ' ); ?>
+
+
+<?php $postslist = get_posts( array(
+    'posts_per_page' => 10,
+    'order'          => 'ASC',
+    'orderby'        => 'title'
+) );
+ 
+if ( $postslist ) {
+    foreach ( $postslist as $post ) :
+        setup_postdata( $post );
+        ?>
+        <div>
+            <?php the_date(); ?>
+            <br />
+            <?php the_title(); ?>   
+            <?php the_excerpt(); ?>
+        </div>
+    <?php
+    endforeach; 
+    wp_reset_postdata();
+}?>
+
+garrett
+
+
+
+<?php echo help();?>
+
+
+
 
 <?php get_footer(); ?>

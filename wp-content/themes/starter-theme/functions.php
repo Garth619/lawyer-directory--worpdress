@@ -1,7 +1,4 @@
-<?php 
-
-
-if (function_exists('register_sidebars')) {
+<?php if (function_exists('register_sidebars')) {
     register_sidebar(array(
         'name' => 'Recent Posts',
         'id' => 'sidebar',
@@ -57,56 +54,75 @@ add_action( 'rest_api_init', 'list_states_route');
 
 // Cities with Practice Areas
 
-function cites_with_pa() {
+function cities_with_pa() {
 	
 	global $post;
 	
-	$state = 112;
-	$stateTags = array();
-
+	$city = 124;
+	$citytag = array();
 	
-	$query_args = array (
+	 
+	$postsargs = array(
     'post_type' => 'lawfirm',
+    'numberposts' => '-1',
     'tax_query' => array(
         array(
           'taxonomy'  => 'lawfirm_locations',
            'field'     => 'term_id',
-           'terms'     => $state,
+           'terms'     => $city,
 				)
-			),
-		);
-	
-	$querystate = new WP_Query( $query_args );
-	
-		if ( $querystate->have_posts() ) {
- 
-			while ( $querystate->have_posts() ) {
- 
-        $querystate->the_post();
-        
-        	if( has_term('', 'lawfirm_practiceareas') ){
-        
-						$term_list = wp_get_post_terms($post->ID, 'lawfirm_practiceareas', array("fields" => "ids"));
+			)
+   );
 
-						$statetags = array_unique(array_merge($stateTags,$term_list), SORT_REGULAR);
-				
-				}
-			}
- 		}
- 
- 		wp_reset_postdata();
- 		
- 		
- 		
- 		return rest_ensure_response($statetags);
+	$posts_array = get_posts($postsargs );
 	
-}
+	
+
+	
+	// grab all ids into an array
+	
+	// get all terms from post ids
+	
+	
+	
+	
+	
+	// maybe i wont use foreach can i return post id array, then do
+
+	foreach ($posts_array as $post) {
+		
+		// $termlist = wp_get_post_terms($post->ID, 'lawfirm_practiceareas', array("fields" => "ids"));
+		
+		
+		// $workbitch = array_unique(array_merge($citytag,$termlist), SORT_REGULAR);
+						
+		//print_r($workbitch);
+		
+		// need to test if this is a function.php problem or sending data to rest problem
+		
+		// might need to dive deep with this https://wordpress.stackexchange.com/questions/236249/wp-api-v2-custom-endpoint-response-formatting
+		
+		
+	}
+	 
+	 
+	 //var_dump($variable);
+	 
+	 // $array[$key]
+
+
+	 
+	 return $posts_array;
+	 
+ 	// return rest_ensure_response($posts_array);
+ 	
+ }
 
 
 function cites_with_pa_route() {
 	register_rest_route( 'locations/v1', '/cities', array(
 		'methods' => 'GET',
-		'callback' => 'cites_with_pa',)
+		'callback' => 'cities_with_pa',)
 	);
 }
 
@@ -115,6 +131,93 @@ add_action( 'rest_api_init', 'cites_with_pa_route' );
 
 
 //////////// practice
+
+
+
+
+function help() {
+	
+	global $post;
+	 
+	$lastposts = get_posts( array(
+    'posts_per_page' => 5,
+    
+	) );
+ 
+if ( $lastposts ) {
+    foreach ( $lastposts as $post ) :
+        setup_postdata( $post );
+        
+        //the_title();
+       // the_content();
+    
+    endforeach; 
+    wp_reset_postdata();
+}
+             
+}
+
+
+function help_route() {
+	register_rest_route( 'locations/v1', '/help', array(
+		'methods' => 'GET',
+		'callback' => 'help',)
+	);
+}
+
+
+add_action( 'rest_api_init', 'help_route' );
+
+
+///////////
+
+
+
+function get_all_posts($request)
+{
+    $posts = get_posts([
+        'posts_per_page' => -1,
+        'post_type' => 'lawfirm',
+        'tax_query' => array(
+        array(
+          'taxonomy'  => 'lawfirm_locations',
+           'field'     => 'term_id',
+           'terms'     => 123,
+				)
+			)
+    ]);
+
+    $controller = new WP_REST_Posts_Controller('post');
+
+    $array = [];
+
+    foreach ( $posts as $post ) {
+        $data = $controller->prepare_item_for_response($post,$request);
+        $array[] = $controller->prepare_response_for_collection($data);
+        
+       
+    }
+
+    return $array;
+}
+
+
+
+function get_all_posts_route() {
+	register_rest_route( 'locations/v1', '/wtf', array(
+		'methods' => 'GET',
+		'callback' => 'get_all_posts',)
+	);
+}
+
+
+add_action( 'rest_api_init', 'get_all_posts_route' );
+
+
+///////////
+
+
+
 
 function my_awesome_func( $data ) {
   $posts = get_posts( array(
