@@ -175,6 +175,10 @@ add_action( 'rest_api_init', 'help_route' );
 
 function get_all_posts($request)
 {
+	
+	
+		$city = 122;
+	
     $posts = get_posts([
         'posts_per_page' => -1,
         'post_type' => 'lawfirm',
@@ -182,7 +186,7 @@ function get_all_posts($request)
         array(
           'taxonomy'  => 'lawfirm_locations',
            'field'     => 'term_id',
-           'terms'     => 123,
+           'terms'     => $city,
 				)
 			)
     ]);
