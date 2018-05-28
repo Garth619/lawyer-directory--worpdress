@@ -173,11 +173,10 @@ add_action( 'rest_api_init', 'help_route' );
 
 
 
-function get_all_posts($request)
-{
+function get_all_posts($request) {
 	
 	
-		$city = 122;
+		$city = 123;
 	
     $posts = get_posts([
         'posts_per_page' => -1,
@@ -191,13 +190,16 @@ function get_all_posts($request)
 			)
     ]);
 
-    $controller = new WP_REST_Posts_Controller('post');
+    $controller = new WP_REST_Posts_Controller('lawfirm');
 
     $array = [];
 
     foreach ( $posts as $post ) {
+	    
         $data = $controller->prepare_item_for_response($post,$request);
         $array[] = $controller->prepare_response_for_collection($data);
+        
+        
         
        
     }
