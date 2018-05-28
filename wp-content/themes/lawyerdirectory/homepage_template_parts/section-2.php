@@ -17,7 +17,10 @@
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
      echo '<ul>';
      foreach ( $terms as $term ) {
-       echo '<li>' . $term->name . '</li>';
+	     
+	      $term_link = get_term_link( $term );
+	     
+       echo '<li><a href="'. esc_url( $term_link ) . '">' . $term->name . '</a></li>';
         
      }
      echo '</ul>';
@@ -25,17 +28,24 @@
 		
 	?>
 
+
+
+
+<?php
+$term_id = 128;
+$taxonomy_name = 'lawfirm_practiceareas';
+$term_children = get_term_children( $term_id, $taxonomy_name );
+
+echo '<ul>';
+foreach ( $term_children as $child ) {
+	$term = get_term_by( 'id', $child, $taxonomy_name );
+	echo '<li><a href="' . get_term_link( $child, $taxonomy_name ) . '">' . $term->name . '</a></li>';
+}
+echo '</ul>';
+?> 
 	
 	
-	
-	
-	
-	<ul>
-		<li><a href="">Business</a></li>
-		<li><a href="">Business</a></li>
-		<li><a href="">Business</a></li>
-		
-	</ul>
+
 		
 		
 		

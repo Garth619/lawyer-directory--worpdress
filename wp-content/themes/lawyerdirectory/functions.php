@@ -245,6 +245,19 @@ add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
 
 
 
+///// Permalink Rewrites
+
+
+
+function custom_query_vars_filter($vars) {
+  $vars[] .= 'location';
+  $vars[] .= 'department';
+  return $vars;
+}
+add_filter( 'query_vars', 'custom_query_vars_filter' );
+
+
+
 
 
 

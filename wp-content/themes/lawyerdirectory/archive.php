@@ -2,42 +2,50 @@
 
 		
 <?php
-	/*
-	 * Queue the first post, that way we know
-	 * what date we're dealing with (if that is the case).
-	 *
-	 * We reset this later so we can run the loop
-	 * properly with a call to rewind_posts().
-	 */
-	if ( have_posts() )
-		the_post();
+	
+	// get_template_part( 'loop', 'archive' );
+	
 ?>
 
-			<h1 class="page-title">
-<?php if ( is_day() ) : ?>
-				<?php printf( __( 'Daily Archives: <span>%s</span>', 'twentyten' ), get_the_date() ); ?>
-<?php elseif ( is_month() ) : ?>
-				<?php printf( __( 'Monthly Archives: <span>%s</span>', 'twentyten' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'twentyten' ) ) ); ?>
-<?php elseif ( is_year() ) : ?>
-				<?php printf( __( 'Yearly Archives: <span>%s</span>', 'twentyten' ), get_the_date( _x( 'Y', 'yearly archives date format', 'twentyten' ) ) ); ?>
-<?php else : ?>
-				<?php _e( 'Blog Archives', 'twentyten' ); ?>
-<?php endif; ?>
-			</h1>
+
 
 <?php
-	/*
-	 * Since we called the_post() above, we need to
-	 * rewind the loop back to the beginning that way
-	 * we can run the loop properly, in full.
-	 */
-	rewind_posts();
+	
+	$current = get_queried_object()->term_id;
+	
+	
+	$terms = get_terms( array(
+    'taxonomy' => 'lawfirm_locations',
+    'parent' => $current,
+	
+	) );
+		
+		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+     
+     echo '<ul>';
+     foreach ( $terms as $term ) {
+	     
+	      $term_link = get_term_link( $term );
+	     
+       echo '<li><a href="'. esc_url( $term_link ) . '">' . $term->name . '</a></li>';
+        
+     }
+     echo '</ul>';
+ 
+} ?>
 
-	/* include a file called loop-archive.php and that will be used instead.
-	 */
-	get_template_part( 'loop', 'archive' );
+<?php if(is_tax( 'lawfirm_locations', 'california' )) {
+
+echo "this is ca";
+
+} ?>
+
+
+<?php 
+	
+	
+	
 ?>
-
 
 
 <?php // get_sidebar(); ?>
