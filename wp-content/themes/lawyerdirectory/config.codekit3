@@ -301,11 +301,11 @@
 		"oAP": "\/style.css.map",
 		"oF": 0
 		},
-	"\/taxonomy-lawfirm_locations.php.old": {
+	"\/taxonomy-lawfirm_locations.php": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/taxonomy-lawfirm_locations.php.old",
+		"oAP": "\/taxonomy-lawfirm_locations.php",
 		"oF": 0
 		}
 	},
