@@ -10,7 +10,7 @@
 		
 	$state_terms = get_terms( array(
     'taxonomy' => 'lawfirm_locations',
-    'parent'  => 147
+    'parent'  => 293
 	
 	) );
 		

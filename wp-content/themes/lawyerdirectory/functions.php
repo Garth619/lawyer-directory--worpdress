@@ -249,15 +249,22 @@ add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
 
 
 
+function wptuts_add_rewrite_rules() {
+    add_rewrite_rule(
+        '^lawfirm/^([^/]*)/^([^/]*)/?$',
+        'index.php?currentcity=$matches[1]&currentpracticeareas=$matches[2]',
+        'top'
+    );
+}
+add_action( 'init', 'wptuts_add_rewrite_rules' );
+
+
 function custom_query_vars_filter($vars) {
-  $vars[] .= 'location';
-  $vars[] .= 'department';
+  $vars[] .= 'currentcity';
+  $vars[] .= 'currentpracticeareas';
   return $vars;
 }
 add_filter( 'query_vars', 'custom_query_vars_filter' );
-
-
-
 
 
 
