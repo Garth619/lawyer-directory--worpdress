@@ -19,20 +19,8 @@ function my_jquery_enqueue() {
  add_action( 'wp_enqueue_scripts', 'load_my_styles_scripts', 20 );
  
  
- // Critical Styles in the header
  
- 
-/*
- function internal_css_print() {
-    echo '<style type="text/css">';
-    include_once get_template_directory() . '/critical.css';
-    echo '</style>';
-}
- 
- 
- 
- add_action( 'wp_head', 'internal_css_print' );
-*/
+
 /* Force Gravity Forms to init scripts in the footer and ensure that the DOM is loaded before scripts are executed
 -------------------------------------------------------------- */
 add_filter( 'gform_init_scripts_footer', '__return_true' );
@@ -249,24 +237,41 @@ add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
 
 
 
-function wptuts_add_rewrite_rules() {
-    add_rewrite_rule(
-        '^lawfirm/^([^/]*)/^([^/]*)/?$',
-        'index.php?currentcity=$matches[1]&currentpracticeareas=$matches[2]',
-        'top'
-    );
+function prefix_rewrite_rule() {
+    add_rewrite_rule( 'lawfirm/([^/]+)/photos', 'index.php?lawfirm=$matches[1]&photos=yes', 'top' );
+    add_rewrite_rule( 'lawfirm/([^/]+)/videos', 'index.php?lawfirm=$matches[1]&videos=yes', 'top' );
 }
-add_action( 'init', 'wptuts_add_rewrite_rules' );
+ 
+add_action( 'init', 'prefix_rewrite_rule' );
 
 
-function custom_query_vars_filter($vars) {
-  $vars[] .= 'currentcity';
-  $vars[] .= 'currentpracticeareas';
-  return $vars;
+function prefix_register_query_var( $vars ) {
+    $vars[] = 'photos';
+    $vars[] = 'videos';
+ 
+    return $vars;
 }
-add_filter( 'query_vars', 'custom_query_vars_filter' );
+ 
+add_filter( 'query_vars', 'prefix_register_query_var' );
 
 
+function prefix_url_rewrite_templates() {
+ 
+    if ( get_query_var( 'photos' ) && is_singular( 'lawfirm' ) ) {
+	    
+	    echo "sup";
+        //add_filter( 'template_include', function() {
+            //return get_template_directory() . '/single-garrett.php';
+       // });
+    }
+ 
+    if ( get_query_var( 'videos' ) && is_singular( 'lawfirm' ) ) {
+        add_filter( 'template_include', function() {
+            return get_template_directory() . '/single-garretttwo.php';
+        });
+    }
+}
+ 
+add_action( 'template_redirect', 'prefix_url_rewrite_templates' );
 
 
-		

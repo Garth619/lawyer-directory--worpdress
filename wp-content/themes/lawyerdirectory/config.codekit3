@@ -4,7 +4,7 @@
 	{
 		"name": "Process All Remaining Files and Folders",
 		"stepType": 1,
-		"uuidString": "D255CCD8-D523-4C53-8B3E-8FF0ED2D86E3"
+		"uuidString": "56712ACB-B16B-4351-B57A-DF8F3EC4B62E"
 		}
 	],
 "creatorBuild": "26680",
@@ -277,6 +277,20 @@
 		"oAP": "\/sidebar.php",
 		"oF": 0
 		},
+	"\/single-garrett.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/single-garrett.php",
+		"oF": 0
+		},
+	"\/single-garretttwo.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/single-garretttwo.php",
+		"oF": 0
+		},
 	"\/single.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -314,10 +328,10 @@
 "manualImportLinks": {
 	},
 "projectAttributes": {
-	"creationDate": 549163929,
+	"creationDate": 549299071,
 	"displayValue": "lawyerdirectory",
 	"displayValueWasSetByUser": 0,
-	"iconImageName": "meme-confusedBaby",
+	"iconImageName": "meme-doge",
 	"iconImageWasSetByUser": 0
 	},
 "projectSettings": {
