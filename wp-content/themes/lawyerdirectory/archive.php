@@ -57,6 +57,9 @@
 				);
 		
 			echo $children;
+		
+			
+			
 	
 			$querycity = new WP_Query( $query_args );
 			
@@ -67,21 +70,34 @@
 		        $querycity->the_post();
 		        
 		        	if( has_term('', 'lawfirm_practiceareas') ){
+			        	
+			        	$postid = get_the_ID();
+			        	
+			        	$what = wp_get_post_terms($post->ID, 'lawfirm_practiceareas', array("fields" => "ids"));
+			        	
+			        	echo "<br/>";
+			        	
+			        	print_r($postid);
+			        	
+			        	echo "<br/>";
+			        	
+			        	print_r($what);
 		        
-								$term_list = wp_get_post_terms($post->ID, 'lawfirm_practiceareas', array("fields" => "ids"));
+								 // $term_list = wp_get_post_terms($post->ID, 'lawfirm_practiceareas', array("fields" => "ids"));
 		
-
-								$singletaglist = array_unique(array_merge($cityTags,$term_list), SORT_REGULAR);
+								 // $singletaglist = array_unique(array_merge($cityTags,$term_list), SORT_REGULAR);
 								
-								print_r($singletaglist);
-
-						
 						}
 					}
 		 		}
  
 		 	
 		 	wp_reset_postdata();
+		 	
+		 	// $termlistarray = print_r($singletaglist);
+		 	
+		 	
+		 	
 				
 		}
 
