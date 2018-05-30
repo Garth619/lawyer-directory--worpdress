@@ -4,7 +4,7 @@
 	{
 		"name": "Process All Remaining Files and Folders",
 		"stepType": 1,
-		"uuidString": "56712ACB-B16B-4351-B57A-DF8F3EC4B62E"
+		"uuidString": "D255CCD8-D523-4C53-8B3E-8FF0ED2D86E3"
 		}
 	],
 "creatorBuild": "26680",
@@ -238,6 +238,13 @@
 		"oAP": "\/loop.php",
 		"oF": 0
 		},
+	"\/page copy.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/page copy.php",
+		"oF": 0
+		},
 	"\/page-home.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -328,10 +335,10 @@
 "manualImportLinks": {
 	},
 "projectAttributes": {
-	"creationDate": 549299071,
+	"creationDate": 549163929,
 	"displayValue": "lawyerdirectory",
 	"displayValueWasSetByUser": 0,
-	"iconImageName": "meme-doge",
+	"iconImageName": "meme-confusedBaby",
 	"iconImageWasSetByUser": 0
 	},
 "projectSettings": {
