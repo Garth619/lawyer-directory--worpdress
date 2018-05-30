@@ -238,8 +238,9 @@ add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
 
 
 function prefix_rewrite_rule() {
+    
     add_rewrite_rule( 'designers/([^/]+)/?', 'index.php?pagename=designers&designer_slug=$matches[1]', 'top' );
-    //add_rewrite_rule( 'test_practiceareas/([^/]+)/videos', 'index.php?test_practiceareas=$matches[1]&videos=yes', 'top' );
+    
 }
  
 add_action( 'init', 'prefix_rewrite_rule' );
@@ -247,9 +248,8 @@ add_action( 'init', 'prefix_rewrite_rule' );
 
 function prefix_register_query_var( $vars ) {
     $vars[] = 'designer_slug';
-    //$vars[] = 'videos';
- 
-    return $vars;
+    
+		return $vars;
 }
  
 add_filter( 'query_vars', 'prefix_register_query_var' );
@@ -263,13 +263,15 @@ function prefix_url_rewrite_templates() {
        
 	    
 	    
-	    echo "this is photo taxxxx";
+	    echo "garrett";
 	    
+
 /*
 	    add_filter( 'template_include', function() {
-            return get_template_directory() . '/single-garrett.php';
+            return get_template_directory() . '/page-garrett.php';
        });
 */
+
     }
  
 /*
