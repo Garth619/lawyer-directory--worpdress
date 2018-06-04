@@ -1,0 +1,1 @@
+/Applications/MAMP/htdocs/lawyer-directory--worpdress/wp-content/plugins/query-monitor/wp-content/db.php

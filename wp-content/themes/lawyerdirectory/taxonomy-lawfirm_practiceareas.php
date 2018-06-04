@@ -6,6 +6,8 @@
 
 <!-- this is interesting https://wordpress.stackexchange.com/questions/220163/is-there-a-way-of-increasing-the-speed-of-this-query -->
 
+<!-- https://deliciousbrains.com/finding-bottlenecks-wordpress-code/ -->
+
 <!-- https://wordpress.stackexchange.com/questions/216681/how-to-handle-the-terms-inside-loop -->
 
 <!-- https://wordpress.stackexchange.com/questions/138264/including-all-terms-in-wordpress-tax-query good stuff -->
@@ -60,8 +62,7 @@
      array(
             'taxonomy' => 'lawfirm_practiceareas',
             'field'    => 'term_id',
-            'terms'    => $children,
-            'parent'	=> 0
+            'terms'    => $children
             // i could maybe add parents and child of here to narrow down and make query quicker
         )
 	)
@@ -80,11 +81,14 @@ if ( $city_posts->have_posts() ) {
 
 								// the_title();
 								
+							
 								$term_list = wp_get_post_terms($post->ID, 'lawfirm_locations', array("orderby" => "parent","fields" => "names"));
 								
 								$singletaglist = array_unique(array_merge($cityTags,$term_list), SORT_REGULAR);
 								
 								// I think wp_get_post_terms is heavy on the db, maybe use get_the_terms or get_object_term_cache()
+								
+								// if i cant get to work then maybe pluck exisiting data (lookup query usage) and run my own loop of array data
 								
 								print_r($term_list); // this works
 								
