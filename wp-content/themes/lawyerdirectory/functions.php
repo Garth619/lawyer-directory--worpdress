@@ -238,16 +238,17 @@ add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
 
 
 function prefix_rewrite_rule() {
-    add_rewrite_rule( 'designers/([^/]+)/?', 'index.php?pagename=designers&designer_slug=$matches[1]', 'top' );
-    //add_rewrite_rule( 'test_practiceareas/([^/]+)/videos', 'index.php?test_practiceareas=$matches[1]&videos=yes', 'top' );
-}
+		add_rewrite_rule( 'pa-test/([^/]+)/([^/]+)/?', 'index.php?pagename=pa-test&currentstate=$matches[1]=&currentcity=$matches[2]', 'top' );
+		add_rewrite_rule( 'pa-test/([^/]+)/?', 'index.php?pagename=pa-test&currentstate=$matches[1]', 'top' );
+    
+ }
  
 add_action( 'init', 'prefix_rewrite_rule' );
 
 
 function prefix_register_query_var( $vars ) {
-    $vars[] = 'designer_slug';
-    //$vars[] = 'videos';
+    $vars[] = 'currentstate';
+    $vars[] = 'currentcity';
  
     return $vars;
 }
@@ -257,13 +258,13 @@ add_filter( 'query_vars', 'prefix_register_query_var' );
 
 function prefix_url_rewrite_templates() {
  
-    if ( get_query_var( 'designer_slug' //, url value here? or what?
+    if ( get_query_var( 'currentstate' //, url value here? or what?
     
      ) ) { // or the other isset example  if(!isset( $wp_query->query['photos'] ))
        
 	    
 	    
-	    echo "this is photo taxxxx";
+	    echo "this is currentstate";
 	    
 /*
 	    add_filter( 'template_include', function() {
@@ -272,13 +273,19 @@ function prefix_url_rewrite_templates() {
 */
     }
  
+
+    if ( get_query_var( 'currentcity' ) ) {
+		
+			echo "& this is currentcity";
+
+
 /*
-    if ( get_query_var( 'videos' ) ) {
         add_filter( 'template_include', function() {
             return get_template_directory() . '/single-garretttwo.php';
         });
-    }
 */
+    }
+
 }
  
 add_action( 'template_redirect', 'prefix_url_rewrite_templates' );
