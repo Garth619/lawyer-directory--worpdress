@@ -245,6 +245,13 @@
 		"oAP": "\/page copy.php",
 		"oF": 0
 		},
+	"\/page-garrett.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/page-garrett.php",
+		"oF": 0
+		},
 	"\/page-home.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -327,6 +334,13 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/taxonomy-lawfirm_locations.php",
+		"oF": 0
+		},
+	"\/taxonomy-lawfirm_practiceareas.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/taxonomy-lawfirm_practiceareas.php",
 		"oF": 0
 		}
 	},

@@ -238,8 +238,8 @@ add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
 
 
 function prefix_rewrite_rule() {
-		add_rewrite_rule( 'pa-test/([^/]+)/([^/]+)/?', 'index.php?pagename=pa-test&currentstate=$matches[1]=&currentcity=$matches[2]', 'top' );
-		add_rewrite_rule( 'pa-test/([^/]+)/?', 'index.php?pagename=pa-test&currentstate=$matches[1]', 'top' );
+		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)/([^/]+)/?', 'index.php?&currentstate=$matches[2]=&currentcity=$matches[3]', 'top' );
+		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)/?', 'index.php?&currentstate=$matches[2]', 'top' );
     
  }
  
