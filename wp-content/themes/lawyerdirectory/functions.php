@@ -238,8 +238,11 @@ add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
 
 
 function prefix_rewrite_rule() {
-		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)/([^/]+)/?', 'index.php?&currentstate=$matches[2]=&currentcity=$matches[3]', 'top' );
-		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)/?', 'index.php?&currentstate=$matches[2]', 'top' );
+		//add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)/([^/]+)/?', 'index.php?&currentstate=$matches[2]=&currentcity=$matches[3]', 'top' );
+		//add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)/?', 'index.php?&currentstate=$matches[2]', 'top' );
+		
+		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/california', 'index.php?lawfirm_pa=$matches[1]&currentstate=yes', 'top' );
+    
     
  }
  
@@ -264,13 +267,13 @@ function prefix_url_rewrite_templates() {
        
 	    
 	    
-	    echo "this is currentstate";
+	    // echo "this is currentstate";
 	    
-/*
+
 	    add_filter( 'template_include', function() {
-            return get_template_directory() . '/single-garrett.php';
+            return get_template_directory() . '/single-lawfirm.php';
        });
-*/
+
     }
  
 
@@ -285,7 +288,8 @@ function prefix_url_rewrite_templates() {
         });
 */
     }
-
+    
+     
 }
  
 add_action( 'template_redirect', 'prefix_url_rewrite_templates' );

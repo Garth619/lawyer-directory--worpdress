@@ -46,6 +46,7 @@
 <?php 
 	
 	$children = get_queried_object()->term_id;
+
 	
 	// $terms = get_terms( 'lawfirm_locations' );
 	
@@ -63,7 +64,7 @@
             'taxonomy' => 'lawfirm_practiceareas',
             'field'    => 'term_id',
             'terms'    => $children
-            // i could maybe add parents and child of here to narrow down and make query quicker
+            // i could maybe add parents and child of here to narrow down and make query quicker ?
         )
 	)
 );

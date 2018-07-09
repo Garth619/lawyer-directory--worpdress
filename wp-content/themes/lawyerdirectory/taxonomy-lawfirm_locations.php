@@ -79,6 +79,8 @@
 		 	foreach ($singletaglist as $value) {
 		 		
 		 		echo '<a href="' . get_bloginfo('url') . '/?currentcity='. $children . '&currentpracticeareas=' . $value . '">' . $value .'</a><br>';
+		 		
+		 		// these need to be just the urls. the urls show what the query will be?
 			
 			}
 		 	
