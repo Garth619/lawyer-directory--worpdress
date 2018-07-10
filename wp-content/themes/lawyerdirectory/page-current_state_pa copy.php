@@ -13,12 +13,9 @@ This is a current state:
 
 <?php 
 	
-	global $post;
 	
 	$currentpracticearea = get_query_var( 'lawfirm_pa');
 	$currentstate = get_query_var( 'currentstate');
-	
-	
 	$cities = array();
 	
 	$query_args = array (
@@ -38,35 +35,10 @@ This is a current state:
 	);
 	
 	
-	$myposts = get_posts( $query_args );
-	foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
 	
 	
 	
-	<?php $term_list = wp_get_post_terms($post->ID, 'lawfirm_locations', array("orderby" => "parent", "fields" => "names")); 
-		
-		
-		$singletaglist = array_unique(array_merge($cities,$term_list), SORT_REGULAR);
-		
-		
-		print_r($singletaglist); 
-		
-		
-		echo "<br/>";
-		
-		
-		// "wordpress merge arrays inside loop https://stackoverflow.com/questions/9334767/multidimensional-array-merge-operation-inside-loop
-		
-		?>
 	
-	
-<?php endforeach; 
-wp_reset_postdata();?>
-
-	
-	<?php 
-	
-/*
 	$querycity = new WP_Query( $query_args );
 			
 				if ( $querycity->have_posts() ) {
@@ -99,7 +71,6 @@ wp_reset_postdata();?>
 		 	
 		 	wp_reset_postdata();
 	
-*/
 	
 	
 
