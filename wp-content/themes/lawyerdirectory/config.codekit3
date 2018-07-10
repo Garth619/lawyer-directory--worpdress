@@ -245,6 +245,20 @@
 		"oAP": "\/page copy.php",
 		"oF": 0
 		},
+	"\/page-current_city_pa.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/page-current_city_pa.php",
+		"oF": 0
+		},
+	"\/page-current_state_pa.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/page-current_state_pa.php",
+		"oF": 0
+		},
 	"\/page-garrett.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -289,13 +303,6 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/sidebar.php",
-		"oF": 0
-		},
-	"\/single-lawfirm.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/single-lawfirm.php",
 		"oF": 0
 		},
 	"\/single.php": {

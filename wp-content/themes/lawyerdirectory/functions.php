@@ -238,10 +238,11 @@ add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
 
 
 function prefix_rewrite_rule() {
-		//add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)/([^/]+)/?', 'index.php?&currentstate=$matches[2]=&currentcity=$matches[3]', 'top' );
-		//add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)/?', 'index.php?&currentstate=$matches[2]', 'top' );
+	
+	
+		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)/([^/]+)', 'index.php?lawfirm_pa=$matches[1]&currentstate=yes&currentcity=yes', 'top' );
 		
-		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/california', 'index.php?lawfirm_pa=$matches[1]&currentstate=yes', 'top' );
+		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)', 'index.php?lawfirm_pa=$matches[1]&currentstate=$yes', 'top' );
     
     
  }
@@ -271,23 +272,31 @@ function prefix_url_rewrite_templates() {
 	    
 
 	    add_filter( 'template_include', function() {
-            return get_template_directory() . '/single-lawfirm.php';
+            return get_template_directory() . '/page-current_state_pa.php';
        });
 
     }
+    
+    
+
+    if (get_query_var( 'currentstate') && get_query_var( 'currentcity')) { // or the other isset example  if(!isset( $wp_query->query['photos'] ))
+       
+	    
+	    
+	   // echo "this is currentcity";
+	    
+
+
+	    add_filter( 'template_include', function() {
+            return get_template_directory() . '/page-current_city_pa.php';
+       });
+
+
+    }
+
  
 
-    if ( get_query_var( 'currentcity' ) ) {
-		
-			echo "& this is currentcity";
-
-
-/*
-        add_filter( 'template_include', function() {
-            return get_template_directory() . '/single-garretttwo.php';
-        });
-*/
-    }
+    
     
      
 }
