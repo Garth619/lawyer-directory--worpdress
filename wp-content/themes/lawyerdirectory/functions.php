@@ -240,9 +240,9 @@ add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
 function prefix_rewrite_rule() {
 	
 	
-		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)/([^/]+)', 'index.php?lawfirm_pa=$matches[1]&currentstate=yes&currentcity=yes', 'top' );
+		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)/([^/]+)', 'index.php?lawfirm_pa=$matches[1]&currentstate=$matches[2]&currentcity=$matches[3]', 'top' );
 		
-		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)', 'index.php?lawfirm_pa=$matches[1]&currentstate=$yes', 'top' );
+		add_rewrite_rule( 'lawfirm_practiceareas/([^/]+)/([^/]+)', 'index.php?lawfirm_pa=$matches[1]&currentstate=$matches[2]', 'top' );
     
     
  }
@@ -251,6 +251,7 @@ add_action( 'init', 'prefix_rewrite_rule' );
 
 
 function prefix_register_query_var( $vars ) {
+    $vars[] = 'lawfirm_pa';
     $vars[] = 'currentstate';
     $vars[] = 'currentcity';
  
@@ -262,16 +263,10 @@ add_filter( 'query_vars', 'prefix_register_query_var' );
 
 function prefix_url_rewrite_templates() {
  
-    if ( get_query_var( 'currentstate' //, url value here? or what?
-    
-     ) ) { // or the other isset example  if(!isset( $wp_query->query['photos'] ))
+    if ( get_query_var( 'currentstate') ) { // or the other isset example  if(!isset( $wp_query->query['photos'] ))
        
-	    
-	    
-	    // echo "this is currentstate";
-	    
-
-	    add_filter( 'template_include', function() {
+	  
+	  	add_filter( 'template_include', function() {
             return get_template_directory() . '/page-current_state_pa.php';
        });
 
@@ -279,26 +274,17 @@ function prefix_url_rewrite_templates() {
     
     
 
-    if (get_query_var( 'currentstate') && get_query_var( 'currentcity')) { // or the other isset example  if(!isset( $wp_query->query['photos'] ))
+    if (get_query_var( 'currentstate') && get_query_var( 'currentcity')) { 
        
 	    
 	    
-	   // echo "this is currentcity";
-	    
-
-
-	    add_filter( 'template_include', function() {
+			add_filter( 'template_include', function() {
             return get_template_directory() . '/page-current_city_pa.php';
        });
 
 
     }
 
- 
-
-    
-    
-     
 }
  
 add_action( 'template_redirect', 'prefix_url_rewrite_templates' );
