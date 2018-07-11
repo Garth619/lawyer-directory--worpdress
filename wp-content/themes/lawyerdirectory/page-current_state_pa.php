@@ -8,15 +8,11 @@
 
 <?php 
 	
-	global $post;
-	
 	$currentpracticearea = get_query_var( 'lawfirm_pa');
 	$currentstate = get_query_var( 'currentstate');
 	
 	$taxlocations = 'lawfirm_locations';
 	$taxpracticeareas = 'lawfirm_practiceareas';
-	
-	
 	
 	
 	$query_args = array (
