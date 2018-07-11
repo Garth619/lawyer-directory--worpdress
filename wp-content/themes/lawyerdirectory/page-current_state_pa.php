@@ -12,6 +12,127 @@ This is a current state:
 
 
 
+<?php 
+	
+
+	global $post;
+	
+	
+	$currentpracticearea = get_query_var( 'lawfirm_pa');
+	$currentstate = get_query_var( 'currentstate');
+	
+	$query_args = array (
+		'post_type' => 'lawfirm',
+		'tax_query' => array(
+			 array(
+			   'taxonomy'  => 'lawfirm_locations',
+			    'field'     => 'slug',
+			    'terms'     => $currentstate,
+			),
+			array(
+			   'taxonomy'  => 'lawfirm_practiceareas',
+			    'field'     => 'slug',
+			     'terms'     => $currentpracticearea,
+			)
+		),
+	);
+
+
+
+$myposts = get_posts( $query_args );
+
+
+// echo "<pre>";print_r($myposts);echo "</pre>";
+	
+/*
+	foreach ( $myposts as $post ) : setup_postdata( $post ); 
+
+	echo "<br/>";
+
+the_title();
+	
+	echo "<br/>";
+	
+		
+	
+endforeach; 
+wp_reset_postdata();
+*/
+
+
+
+
+/*
+$terms = get_terms(
+    array(
+        'taxonomy' => 'lawfirm_practiceareas',
+        'object_ids' => array($myposts),
+       //'term_taxonomy_id' => 297,
+    )
+);
+*/
+
+
+//echo "<pre>";print_r($terms);echo "</pre>";
+
+
+/*
+if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+    echo '<ul>';
+    foreach ( $terms as $term ) {
+        echo '<li>' . $term->name . '</li>';
+    }
+    echo '</ul>';
+}
+*/
+
+
+
+
+		$termargs = array (
+			'taxonomy' => 'lawfirm_locations',
+			//'fields' => 'all_with_object_id',
+			'object_ids' => array(118,108,107, 119),
+			'orderby' => 'parent',
+			
+		);
+
+		$term_query = new WP_Term_Query( $termargs );
+
+		//echo "<pre>";print_r($term_query);echo "</pre>";
+		
+		
+		
+
+		if ( ! empty( $term_query ) && ! is_wp_error( $term_query ) ) {
+			foreach ( $term_query ->terms as $term )
+        	
+        	
+        	echo "<br/>" . $term->name;
+			
+			
+			}
+
+
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!--
@@ -42,6 +163,7 @@ if (    $terms
 
 
 
+<!-- current best one
 <?php 
 	
 	global $post;
@@ -80,7 +202,7 @@ if (    $terms
 		
 		
 		
-		// $term_list = wp_get_object_terms($post->ID, 'lawfirm_locations', array("orderby" => "parent", "fields" => "names")); 
+		//$term_list = wp_get_object_terms($post->ID, 'lawfirm_locations', array("orderby" => "parent", "fields" => "names")); 
 		
 		
 		$term_list = get_the_terms($post->ID, 'lawfirm_locations'); 
@@ -89,10 +211,8 @@ if (    $terms
 		//$singletaglist = array_unique(array_merge($cities,$term_list), SORT_REGULAR); // not working
 		
 		
-		print_r($term_list); 
-		
-		
-		echo "<br/>";
+		// echo "<pre>"; print_r($term_list); echo "</pre>";
+
 		
 		
 		// "wordpress merge arrays inside loop https://stackoverflow.com/questions/9334767/multidimensional-array-merge-operation-inside-loop
@@ -107,57 +227,8 @@ wp_reset_postdata();?>
 
 
 <br/><br/><br/>
+-->
 
-
-what if... I just get the post ids after the tax-query then run the get_the_terms after words.....
-
-
-wp_list_pluck taxonomy "name" from wp object, then maybe I can merge later
-
-need to possible pluck from this below:
-
-Array ( [0] => WP_Term Object ( 
-
-				[term_id] => 314 
-				[name] => California 
-				[slug] => california 
-				[term_group] => 0 
-				[term_taxonomy_id] => 314 
-				[taxonomy] => lawfirm_locations 
-				[description] => 
-				[parent] => 293 
-				[count] => 5 
-				[filter] => raw ) 
-				
-				
-				[1] => WP_Term Object ( 
-				
-				[term_id] => 293 
-				[name] => Locations 
-				[slug] => locations 
-				[term_group] => 0 
-				[term_taxonomy_id] => 293 
-				[taxonomy] => lawfirm_locations 
-				[description] => 
-				[parent] => 0 
-				[count] => 13 
-				[filter] => raw ) 
-				
-				
-				[2] => WP_Term Object ( 
-				
-				[term_id] => 315 
-				[name] => Los Angeles 
-				[slug] => los-angeles 
-				[term_group] => 0 
-				[term_taxonomy_id] => 315 
-				[taxonomy] => lawfirm_locations 
-				[description] => 
-				[parent] => 314 
-				[count] => 3 
-				[filter] => raw ) 
-				
-			) 
 
 
 
@@ -166,7 +237,13 @@ Array ( [0] => WP_Term Object (
 		
 		
 
-/*
+
+		
+// echo "<pre>"; print_r($locationterms); echo "</pre>";
+
+?>
+
+<?php /*
 	
 	
 	$currentpracticearea = get_query_var( 'lawfirm_pa');
@@ -250,7 +327,25 @@ Array ( [0] => WP_Term Object (
 ?>
     
 
-
+<?php
+	
+/*
+	
+	$taxonomyName = "lawfirm_locations";
+//This gets top layer terms only.  This is done by setting parent to 0.  
+$parent_terms = get_terms( $taxonomyName, array( 'parent' => 0, 'orderby' => 'slug', 'hide_empty' => false ) );   
+echo '<ul>';
+foreach ( $parent_terms as $pterm ) {
+    //Get the Child terms
+    $terms = get_terms( $taxonomyName, array( 'parent' => $pterm->term_id, 'orderby' => 'slug', 'hide_empty' => false ) );
+    foreach ( $terms as $term ) {
+        echo '<li><a href="' . get_term_link( $term ) . '">' . $term->name . '</a></li>';   
+    }
+}
+echo '</ul>';
+*/
+	
+	 ?>
 
 
 
