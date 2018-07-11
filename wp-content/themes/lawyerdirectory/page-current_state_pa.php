@@ -23,6 +23,7 @@ This is a current state:
 	
 	$query_args = array (
 		'post_type' => 'lawfirm',
+		'fields' => 'ids',
 		'tax_query' => array(
 			 array(
 			   'taxonomy'  => 'lawfirm_locations',
@@ -39,10 +40,18 @@ This is a current state:
 
 
 
-$myposts = get_posts( $query_args );
+$myposts = new Wp_Query( $query_args );
+
+// $post_ids = wp_list_pluck( $myposts->posts, 'ID' );
 
 
-// echo "<pre>";print_r($myposts);echo "</pre>";
+print_r($myposts->posts);
+
+
+
+
+
+echo "<pre>";print_r($post_ids);echo "</pre>";
 	
 /*
 	foreach ( $myposts as $post ) : setup_postdata( $post ); 
@@ -92,8 +101,9 @@ if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
 		$termargs = array (
 			'taxonomy' => 'lawfirm_locations',
 			//'fields' => 'all_with_object_id',
-			'object_ids' => array(118,108,107, 119),
+			'object_ids' => $myposts->posts,
 			'orderby' => 'parent',
+			'parent' => 314,
 			
 		);
 
