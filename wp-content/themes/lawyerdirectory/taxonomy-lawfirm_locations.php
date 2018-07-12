@@ -8,6 +8,9 @@
 	
 	$children = get_queried_object()->term_id;
 	
+	$taxlocations = 'lawfirm_locations';
+	$taxpracticeareas = 'lawfirm_practiceareas';
+	
 	
 	$terms = get_terms( array( // change to WP_Term_Query later its faster I think
     'taxonomy' => 'lawfirm_locations',
@@ -35,9 +38,60 @@
     
      
      if( empty($terms)) {
+	     
+	     	echo "Browse By Practice Area<br/></br/>";
+	     
+	   		$termids = get_terms( array( 
+		 			'taxonomy' => $taxpracticeareas,
+		 			'fields' => 'ids',
+		 			)
+		 		);
+
+		 		//print_r($termids);
+		 		
+		 		
+		 		$args = array (
+		 			'post_type' => 'lawfirm',
+		 			'fields' => 'ids',
+		 			'tax_query' => array(
+
+		 			array(
+		 				'taxonomy'  => $taxlocations,
+		 				'field'     => 'ids',
+		 				'terms'     => $children,
+		 			),
+
+		 			array(
+		 				'taxonomy'  => $taxpracticeareas,
+		 				'field'     => 'ids',
+		 				'terms'     => $termids,
+		 			)
+		 		),
+		 	); 			
+
+
+			$postids = new WP_Query( $args );
 			
-				echo "sup";
+
 			
+			$termargs = array (
+				'taxonomy' => $taxpracticeareas,
+				//'fields' => 'all_with_object_id',
+				'object_ids' => $postids->posts,
+				//'parent' => $currentparentid,
+			
+			);
+
+			$term_query = new WP_Term_Query( $termargs );
+
+		
+			if ( ! empty( $term_query ) && ! is_wp_error( $term_query ) ) {
+				foreach ( $term_query ->terms as $term )
+			
+					echo $term->name . "<br/>";
+			
+				}
+
 			}
 
 	?>

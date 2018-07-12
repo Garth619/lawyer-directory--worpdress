@@ -27,7 +27,7 @@
 			array(
 			   'taxonomy'  => $taxpracticeareas,
 			    'field'     => 'slug',
-			     'terms'     => $currentpracticearea,
+			    'terms'     => $currentpracticearea,
 			)
 		),
 	);

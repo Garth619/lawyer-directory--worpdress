@@ -7,7 +7,7 @@
 		<br/>
 		<br/>
 		
-		<a href="<?php bloginfo('url');?>/lawfirm?current_city=los+angeles&current_tag=lawfirm_practiceareas">Los Angeles</a>
+		<a href="<?php bloginfo('url');?>/lawfirm_locations/locations/california/los-angeles">Los Angeles</a>
 		
 	
 	</div>
