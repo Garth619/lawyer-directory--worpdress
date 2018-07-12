@@ -3,7 +3,7 @@
 
 <h1><?php single_term_title();?></h1>
 
-
+<h2>Browse by State</h2>
 
 
 <?php 
@@ -11,8 +11,6 @@
 
 	$currentterm = get_queried_object()->term_id; 
 	
-	//print_r($currentterm);
-
 	$taxlocations = 'lawfirm_locations';
 	$taxpracticeareas = 'lawfirm_practiceareas';
 	
@@ -39,29 +37,25 @@
 	
 
 	$termargs = array (
-			'taxonomy' => $taxlocations,
-			//'fields' => 'all_with_object_id',
-			'object_ids' => $myposts->posts,
-			'parent' => 293, // location cat
+		'taxonomy' => $taxlocations,
+		'object_ids' => $myposts->posts,
+		'parent' => 293, // location cat
 			
-		);
+	);
+	
+	$currenttermslug = get_queried_object()->slug; 
 
-		$term_query = new WP_Term_Query( $termargs );
+	$term_query = new WP_Term_Query( $termargs );
 
 		
 		if ( ! empty( $term_query ) && ! is_wp_error( $term_query ) ) {
 			foreach ( $term_query ->terms as $term )
 			
-					echo '<br/><a href="' . get_bloginfo('url') . '/' .  $taxpracticeareas . '/' . $currentpracticearea . '/' . $currentstate . '/'  . $term->slug . '">' . $term->name . '</a>';
+					echo '<br/><a href="' . get_bloginfo('url') . '/' .  $taxpracticeareas . '/' . $currenttermslug . '/' . $term->slug . '">' . $term->name . '</a>';
 			
 			}
 
-
-	
-	
-	
-	
-	?>
+?>
 
 	
 

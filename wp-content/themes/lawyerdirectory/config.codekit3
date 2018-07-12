@@ -252,13 +252,6 @@
 		"oAP": "\/page-current_city_pa.php",
 		"oF": 0
 		},
-	"\/page-current_state_pa copy.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/page-current_state_pa copy.php",
-		"oF": 0
-		},
 	"\/page-current_state_pa.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -336,18 +329,18 @@
 		"oAP": "\/style.css.map",
 		"oF": 0
 		},
+	"\/taxonomy-lawfirm_locations copy.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/taxonomy-lawfirm_locations copy.php",
+		"oF": 0
+		},
 	"\/taxonomy-lawfirm_locations.php": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/taxonomy-lawfirm_locations.php",
-		"oF": 0
-		},
-	"\/taxonomy-lawfirm_practiceareas copy.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/taxonomy-lawfirm_practiceareas copy.php",
 		"oF": 0
 		},
 	"\/taxonomy-lawfirm_practiceareas.php": {
