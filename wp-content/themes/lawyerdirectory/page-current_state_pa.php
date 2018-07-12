@@ -46,7 +46,6 @@
 			'taxonomy' => $taxlocations,
 			//'fields' => 'all_with_object_id',
 			'object_ids' => $myposts->posts,
-			'orderby' => 'parent',
 			'parent' => $currentparentid,
 			
 		);

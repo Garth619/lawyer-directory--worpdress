@@ -8,7 +8,7 @@
 	
 	<?php 
 		
-	$state_terms = get_terms( array(
+	$state_terms = get_terms( array( // change new WP_Term_Query later, its newer and faster i think
     'taxonomy' => 'lawfirm_locations',
     'parent'  => 293
 	

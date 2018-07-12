@@ -16,27 +16,47 @@
 	$taxlocations = 'lawfirm_locations';
 	$taxpracticeareas = 'lawfirm_practiceareas';
 	
-	
 	$query_args = array (
 		'post_type' => 'lawfirm',
 		'fields' => 'ids',
 		'tax_query' => array(
 			 array(
 			   'taxonomy'  => $taxlocations,
-			    'field'     => 'slug',
-			    'terms'     => $currentterm,
+			    'field'     => 'ids',
+			    'terms'     => 293, // i gotta narrow this down to the state level somehow
 			),
-				array(
+			array(
 			   'taxonomy'  => $taxpracticeareas,
-			    'field'     => 'slug',
-			     'terms'     => $currentterm,
-				)
+			    'field'     => 'ids',
+			    'terms'     => $currentterm,
+			)
 		),
 	);
 	
-	// does running two tax queries slow it doewn? should I just run in locations?
+	
 	
 	$myposts = new Wp_Query( $query_args );
+	
+
+	$termargs = array (
+			'taxonomy' => $taxlocations,
+			//'fields' => 'all_with_object_id',
+			'object_ids' => $myposts->posts,
+			'parent' => 293, // location cat
+			
+		);
+
+		$term_query = new WP_Term_Query( $termargs );
+
+		
+		if ( ! empty( $term_query ) && ! is_wp_error( $term_query ) ) {
+			foreach ( $term_query ->terms as $term )
+			
+					echo '<br/><a href="' . get_bloginfo('url') . '/' .  $taxpracticeareas . '/' . $currentpracticearea . '/' . $currentstate . '/'  . $term->slug . '">' . $term->name . '</a>';
+			
+			}
+
+
 	
 	
 	
