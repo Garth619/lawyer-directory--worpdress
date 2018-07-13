@@ -11,7 +11,6 @@
 	$taxlocations = 'lawfirm_locations';
 	$taxpracticeareas = 'lawfirm_practiceareas';
 	
-	
 	$terms = get_terms( array( // change to WP_Term_Query later its faster I think
     'taxonomy' => 'lawfirm_locations',
     'parent' => $children,
@@ -36,7 +35,8 @@
      
      }
     
-     
+     // currently using a rewrite rule for this and a page template so I can pull the query_vars out of the url and link my terms to the other urls
+/*
      if( empty($terms)) {
 	     
 	     	echo "Browse By Practice Area<br/></br/>";
@@ -71,7 +71,18 @@
 
 
 			$postids = new WP_Query( $args );
+
 			
+			while($postids->have_posts()) : $postids->the_post(); 
+			
+			
+			the_title();
+			
+			echo "<br/><br/><br/>";
+                	
+      
+      endwhile; 
+      wp_reset_postdata();
 
 			
 			$termargs = array (
@@ -87,12 +98,16 @@
 		
 			if ( ! empty( $term_query ) && ! is_wp_error( $term_query ) ) {
 				foreach ( $term_query ->terms as $term )
+				
+					//echo $term;
+				
 			
-					echo $term->name . "<br/>";
+					echo '<a href="'. get_bloginfo('url') . "/lawfirm_practiceareas/" .  $term->slug  . '/' . $currentstate . '">' . $term->name . '</a><br/>';
 			
 				}
 
 			}
+*/
 
 	?>
 

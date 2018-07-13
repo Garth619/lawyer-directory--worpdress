@@ -266,6 +266,13 @@
 		"oAP": "\/page-home.php",
 		"oF": 0
 		},
+	"\/page-practicearea_city.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/page-practicearea_city.php",
+		"oF": 0
+		},
 	"\/page.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -320,13 +327,6 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/style.css.map",
-		"oF": 0
-		},
-	"\/taxonomy-lawfirm_locations copy.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/taxonomy-lawfirm_locations copy.php",
 		"oF": 0
 		},
 	"\/taxonomy-lawfirm_locations.php": {
