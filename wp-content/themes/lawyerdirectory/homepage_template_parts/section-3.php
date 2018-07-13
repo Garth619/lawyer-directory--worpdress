@@ -8,28 +8,31 @@
 		<br/>
 		
 		
-		<?php if(get_field('select_top_cities')): ?>
+		<?php 
+			
+			if(get_field('select_top_cities')):
 		 
-			<?php while(has_sub_field('select_top_cities')): ?>
+			while(has_sub_field('select_top_cities')):
 		 
-				<br/>
+				echo "<br/>";
 				
-				<?php $select_city_ids = get_sub_field( 'select_city' ); ?>
-		
-				<?php var_dump( $select_city_ids ); ?>
+				$select_city_ids = get_sub_field( 'select_city' );
 				
+				$select_state = $select_city_ids->parent;
 				
+				$parentid = get_term_by('id', $select_state, 'lawfirm_locations');
 				
-				<a href="<?php bloginfo('url');?>">City Name</a>
+				$currentparentid = $parentid->slug;
+				
+				echo '<a href="' . get_bloginfo('url') . '/lawfirm_locations/locations/' . $currentparentid . '/' . $select_city_ids->slug .  '">' . $select_city_ids->name . '</a>';
 				
 		    
-			<?php endwhile; ?>
+			endwhile;
 		 
-		<?php endif; ?>
-		
-		<!--  i could get number from above then spit out into get_terms -->
-		
-		
+		endif;
+	
+		?>
+
 		<br/>
 		<br/>
 		
