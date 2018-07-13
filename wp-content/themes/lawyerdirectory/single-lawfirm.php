@@ -1,5 +1,17 @@
 <?php get_header(); ?>
 
+<div class="breadcrumb">
+	
+	
+	<a href="<?php bloginfo('url');?>">Home</a> -> <a href="<?php bloginfo('url');?>/lawfirm_locations/locations">Locations</a> -> <a href="">California</a> -> <a href="">Los Angeles</a>
+	
+
+	
+	<br/>
+	<br/>
+	<br/>
+	
+</div><!-- breadcrumb -->
 	
 <h1><?php the_title();?></h1>
 
@@ -12,11 +24,47 @@
 
 <p><?php the_field( 'lawfirm_fax_number' ); ?></p>
 
-<p><a href="<?php the_field( 'lawfirm_website_url' ); ?>" target="_blank"><?php the_title();?></a></p>
+<br/>
 
-<h2>Attorneys</h2>
+<?php if(get_sub_field('lawfirm_website_urls')):?>
+
+	<p>Visit Website:<a href="<?php the_field( 'lawfirm_website_url' ); ?>" target="_blank"> <?php the_title();?></a></p>
+
+<?php endif;?>
+
+<br/>
+<br/>
+
+<p>Practice Areas</p>
+
+<?php $terms = get_the_terms( get_the_ID(), 'lawfirm_practiceareas' );
+                         
+if ( $terms && ! is_wp_error( $terms ) ) : 
+ 
+    $pa_links = array();
+ 
+    foreach ( $terms as $term ) {
+        $pa_links[] = $term->name;
+    }
+                         
+    $pa_links_commas = join( ", ", $pa_links );
+    
+    ?>
+ 
+   <?php printf( esc_html__( '%s', 'textdomain' ), esc_html( $pa_links_commas ) ); ?>
+  
+<?php endif; ?>
+
+<br/>
+<br/>
+
+
 
 <?php if(get_field('attorneys')): ?>
+
+	<h2>Attorneys</h2>
+	
+	<br/>
  
 	<?php while(has_sub_field('attorneys')): ?>
  
@@ -57,7 +105,11 @@
 		 
 			<?php while(has_sub_field('attorney_education')): ?>
 		 
+				<br/>
+				
 				<h3>Education</h3>
+				
+				<br/>
 				
 				<?php if(get_sub_field('school_name')):?>
 				
