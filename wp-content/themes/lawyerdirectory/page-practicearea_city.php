@@ -6,8 +6,6 @@
 
 <?php
 	
-	// $children = get_queried_object()->term_id;
-	
 	$taxlocations = 'lawfirm_locations';
 	$taxpracticeareas = 'lawfirm_practiceareas';
 	
@@ -26,6 +24,12 @@
 		 		//print_r($termids);
 		 		
 		 		
+		 		$currenttermid = get_term_by('slug', $lawfirm_location_currentcity, 'lawfirm_locations');
+		 		
+		 		
+		 		$termcityid = $currenttermid->term_id;
+		 		
+		 		
 		 		$args = array (
 		 			'post_type' => 'lawfirm',
 		 			'fields' => 'ids',
@@ -34,7 +38,7 @@
 		 			array(
 		 				'taxonomy'  => $taxlocations,
 		 				'field'     => 'ids',
-		 				'terms'     => 315, // fix
+		 				'terms'     => $termcityid,
 		 			),
 
 		 			array(
@@ -63,8 +67,6 @@
 		
 			if ( ! empty( $term_query ) && ! is_wp_error( $term_query ) ) {
 				foreach ( $term_query ->terms as $term )
-				
-					//echo $term;
 				
 			
 					echo '<a href="'. get_bloginfo('url') . "/lawfirm_practiceareas/" .  $term->slug  . '/' . $lawfirm_location_currentstate . '/' . $lawfirm_location_currentcity . '">' . $term->name . '</a><br/>';

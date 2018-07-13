@@ -35,7 +35,7 @@
      
      }
     
-     // currently using a rewrite rule for this and a page template so I can pull the query_vars out of the url and link my terms to the other urls
+     // currently using a rewrite rule for this and a page template page-practicearea_city so I can pull the query_vars out of the url and link my terms to the other urls
 /*
      if( empty($terms)) {
 	     

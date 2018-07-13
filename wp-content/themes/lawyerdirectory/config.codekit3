@@ -245,25 +245,25 @@
 		"oAP": "\/page copy.php",
 		"oF": 0
 		},
-	"\/page-current_city_pa.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/page-current_city_pa.php",
-		"oF": 0
-		},
-	"\/page-current_state_pa.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/page-current_state_pa.php",
-		"oF": 0
-		},
 	"\/page-home.php": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/page-home.php",
+		"oF": 0
+		},
+	"\/page-locations_city_pa.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/page-locations_city_pa.php",
+		"oF": 0
+		},
+	"\/page-locations_state_pa.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/page-locations_state_pa.php",
 		"oF": 0
 		},
 	"\/page-practicearea_city.php": {
