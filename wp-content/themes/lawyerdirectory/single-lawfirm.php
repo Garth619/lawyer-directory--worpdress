@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="breadcrumb">
+<div class="breadcrumb" style="display:none;">
 	
 	
 	<a href="<?php bloginfo('url');?>">Home</a> -> <a href="<?php bloginfo('url');?>/lawfirm_locations/locations">Locations</a> -> <a href="">California</a> -> <a href="">Los Angeles</a>
