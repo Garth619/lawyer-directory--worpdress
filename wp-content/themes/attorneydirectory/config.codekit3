@@ -190,6 +190,16 @@
 		"oAP": "\/index.php",
 		"oF": 0
 		},
+	"\/js\/custom-min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/custom-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"\/js\/custom.js": {
 		"ft": 64,
 		"ma": 0,
@@ -282,6 +292,13 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/style.css.map",
+		"oF": 0
+		},
+	"\/taxonomy-practice_area.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/taxonomy-practice_area.php",
 		"oF": 0
 		}
 	},

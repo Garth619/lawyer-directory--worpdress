@@ -10,21 +10,22 @@
 		
 		<?php 
 			
-			if(get_field('select_top_cities')):
+			if(get_field('top_cities')):
 		 
-			while(has_sub_field('select_top_cities')):
+			while(has_sub_field('top_cities')):
 		 
 				echo "<br/>";
 				
-				$select_city_ids = get_sub_field( 'select_city' );
+				$select_city_ids = get_sub_field( 'select_top_city' );
 				
 				$select_state = $select_city_ids->parent;
 				
-				$parentid = get_term_by('id', $select_state, 'lawfirm_locations');
+				$parentid = get_term_by('id', $select_state, 'location');
 				
 				$currentparentid = $parentid->slug;
 				
-				echo '<a href="' . get_bloginfo('url') . '/lawfirm_locations/locations/' . $currentparentid . '/' . $select_city_ids->slug .  '">' . $select_city_ids->name . '</a>';
+				echo '<a href="' . get_bloginfo('url') . '/lawyers-location/locations/' . $currentparentid . '/' . $select_city_ids->slug .  '">' . $select_city_ids->name . '</a>';
+
 				
 		    
 			endwhile;
