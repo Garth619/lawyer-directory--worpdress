@@ -10,7 +10,7 @@
     'meta_query' => array(
         array(
             'key' => 'firm_id',
-            'value' => array('156','3444'),
+            'value' => array('156','3444')
         )
     )
 );?>
