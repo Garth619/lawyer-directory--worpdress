@@ -308,3 +308,19 @@ function prefix_url_rewrite_templates() {
 add_action( 'template_redirect', 'prefix_url_rewrite_templates' );
 
 
+
+
+// prevent logouts
+
+/*
+
+https://wordpress.stackexchange.com/questions/114439/preventing-session-timeout
+
+
+add_filter( 'auth_cookie_expiration', 'keep_me_logged_in_for_1_year' );
+function keep_me_logged_in_for_1_year( $expirein ) {
+    return 31556926; // 1 year in seconds
+}
+*/
+
+
