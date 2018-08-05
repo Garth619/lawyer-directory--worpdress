@@ -1,10 +1,13 @@
-<section id="section_four">
+<?php 
 	
-	<div class="section_inner">
+	/* Template Name: All States */
 	
-		<span class="">States</span>
-		
-		
+	get_header(); ?>
+
+
+<div class="section_inner">
+	
+	<h1>States</h1>
 	
 	<?php 
 		
@@ -27,10 +30,9 @@
  }
 		
 	?>
-		
-		
-	
-	</div>
-	
-	
-</section><!-- section_four -->
+
+
+</div>
+
+
+<?php get_footer(); ?>

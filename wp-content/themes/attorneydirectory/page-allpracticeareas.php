@@ -1,0 +1,38 @@
+<?php 
+	
+	/* Template Name: All Practice Areas */
+	
+	get_header(); ?>
+
+
+<div class="section_inner">
+	
+	<h1>Practice Areas</h1>
+	
+	<?php 
+		
+		
+	
+	$terms = get_terms( array(
+    'taxonomy' => 'office_practice_area',
+	
+	) );
+		
+		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+     echo '<ul>';
+     foreach ( $terms as $term ) {
+	     
+	      $term_link = get_term_link( $term );
+	     
+       echo '<li><a href="'. esc_url( $term_link ) . '">' . $term->name . '</a></li>';
+        
+     }
+     echo '</ul>';
+ }
+		
+	?>
+
+</div>
+
+
+<?php get_footer(); ?>

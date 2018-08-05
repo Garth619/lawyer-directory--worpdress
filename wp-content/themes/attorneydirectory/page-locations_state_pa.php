@@ -1,5 +1,8 @@
 <?php get_header(); ?>
 
+<div class="section_inner">
+	
+
 <h1><?php echo get_query_var( 'lawfirm_pa');?></h1>
 
 <h2><?php echo get_query_var( 'currentstate');?></h2>
@@ -52,17 +55,22 @@
 
 		
 		if ( ! empty( $term_query ) && ! is_wp_error( $term_query ) ) {
+			
+			echo "<ul>";
+			
 			foreach ( $term_query ->terms as $term )
 			
-					echo '<br/><a href="' . get_bloginfo('url') . '/lawyers-practice/' . $currentpracticearea . '/' . $currentstate . '/'  . $term->slug . '">' . $term->name . '</a>';
+					echo '<li><a href="' . get_bloginfo('url') . '/lawyers-practice/' . $currentpracticearea . '/' . $currentstate . '/'  . $term->slug . '">' . $term->name . '</a></li>';
 			
 			}
+			
+			echo "</ul>";
 
 
 
 ?>
 
-
+</div>
 
 
 <?php get_footer(); ?>

@@ -1,9 +1,11 @@
 <?php get_header(); ?>
 
+<div class="section_inner">
+
 <div class="breadcrumb">
 	
 	
-	<a href="<?php bloginfo('url');?>">Home</a> -> <a href="<?php bloginfo('url');?>/lawfirm_locations/locations">Locations</a> -> <a href="">California</a> -> <a href="">Los Angeles</a>
+	<a href="<?php bloginfo('url');?>">Home</a> -> <a href="<?php bloginfo('url');?>/lawyers-location/locations">Locations</a> -> <a href="">California</a> -> <a href="">Los Angeles</a>
 	
 
 	
@@ -24,7 +26,7 @@
 
 <?php if(get_field('office_phone')):?>
 
-<p>phone: <?php the_field( 'office_phone' ); ?></p>
+<p>phone: <a href="tel:<?php the_field( 'office_phone' ); ?>"><?php the_field( 'office_phone' ); ?></a></p>
 
 <?php endif;?>
 
@@ -53,7 +55,10 @@ https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2
 <br/>
 <br/>
 
-<p>Practice Areas</p>
+
+	<h2>Attorneys</h2>
+	
+	<h2>Lawfirm Practice Areas</h2>
 
 <?php $terms = get_the_terms( get_the_ID(), 'office_practice_area' );
                          
@@ -77,13 +82,7 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 <br/>
 
 
-
-
-
-	<h2>Attorneys</h2>
-	
-	<br/>
- 
+</div>
 	
 
 <?php get_footer(); ?>

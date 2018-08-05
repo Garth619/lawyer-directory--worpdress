@@ -1,12 +1,10 @@
 <?php get_header(); ?>
 
+<div class="section_inner">
 
+<h1><?php echo get_query_var( 'currentcity');?></h1>
 
-<h1><?php echo get_query_var( 'office_pa');?></h1>
-
-This is a current city:
-
-<?php echo get_query_var( 'currentcity');?>
+<h2><?php echo get_query_var( 'office_pa');?></h2>
 
 
 <?php 
@@ -58,16 +56,7 @@ This is a current city:
 	
 	?>
 
-
-
-
-
-
-
-
-
-
-
+</div>
 
 
 

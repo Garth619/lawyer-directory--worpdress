@@ -15,7 +15,7 @@
 			
 			
 		
-				<li><?php echo $top_practice_areas_term->name;?></li>
+				<li><a href="<?php bloginfo('url');?>/lawyers-practice/<?php echo $top_practice_areas_term->slug;?>"><?php echo $top_practice_areas_term->name;?></a></li>
 			
 			<?php }
 				
@@ -23,33 +23,8 @@
 
 		} ?>
 		
-		<a class="see_all_pa" href="">Don't see what your looking for? See All Practice Areas</a><!-- see_all_pa -->
+		<a class="see_all_pa" href="<?php the_permalink(554156);?>">Don't see what your looking for? See All Practice Areas</a><!-- see_all_pa -->
 	
-	
-<!--
-	<?php 
-		
-		
-	
-	$terms = get_terms( array(
-    'taxonomy' => 'office_practice_area',
-	
-	) );
-		
-		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
-     echo '<ul>';
-     foreach ( $terms as $term ) {
-	     
-	      $term_link = get_term_link( $term );
-	     
-       echo '<li><a href="'. esc_url( $term_link ) . '">' . $term->name . '</a></li>';
-        
-     }
-     echo '</ul>';
- }
-		
-	?>
--->
 
 
 

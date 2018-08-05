@@ -238,6 +238,20 @@
 		"oAP": "\/loop.php",
 		"oF": 0
 		},
+	"\/page-allpracticeareas.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/page-allpracticeareas.php",
+		"oF": 0
+		},
+	"\/page-allstates.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/page-allstates.php",
+		"oF": 0
+		},
 	"\/page-home.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -257,6 +271,13 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/page-locations_state_pa.php",
+		"oF": 0
+		},
+	"\/page-practicearea_city.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/page-practicearea_city.php",
 		"oF": 0
 		},
 	"\/page.php": {
@@ -320,6 +341,13 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/style.css.map",
+		"oF": 0
+		},
+	"\/taxonomy-location.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/taxonomy-location.php",
 		"oF": 0
 		},
 	"\/taxonomy-office_practice_area.php": {

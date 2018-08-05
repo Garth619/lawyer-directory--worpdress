@@ -1,5 +1,6 @@
 <?php get_header(); ?>
 
+<div class="section_inner">
 
 <h1><?php single_term_title();?></h1>
 
@@ -49,15 +50,20 @@
 
 		
 		if ( ! empty( $term_query ) && ! is_wp_error( $term_query ) ) {
+			
+			echo "<ul>";
+			
 			foreach ( $term_query ->terms as $term )
 			
-					echo '<br/><a href="' . get_bloginfo('url') . '/lawyers-practice/' . $currenttermslug . '/' . $term->slug . '">' . $term->name . '</a>';
+					echo '<li><a href="' . get_bloginfo('url') . '/lawyers-practice/' . $currenttermslug . '/' . $term->slug . '">' . $term->name . '</a></li>';
 			
 			}
+			
+			echo "</ul>";
 
 ?>
 
-	
+</div>
 
 
 <?php get_footer(); ?>
