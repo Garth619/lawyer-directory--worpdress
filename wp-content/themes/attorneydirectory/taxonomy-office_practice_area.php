@@ -11,17 +11,17 @@
 
 	$currentterm = get_queried_object()->term_id; 
 	
-	$taxlocations = 'lawfirm_locations';
-	$taxpracticeareas = 'lawfirm_practiceareas';
+	$taxlocations = 'location';
+	$taxpracticeareas = 'office_practice_area';
 	
 	$query_args = array (
-		'post_type' => 'lawfirm',
+		'post_type' => 'office',
 		'fields' => 'ids',
 		'tax_query' => array(
 			 array(
 			   'taxonomy'  => $taxlocations,
 			    'field'     => 'ids',
-			    'terms'     => 293, // i gotta narrow this down to the state level somehow
+			    'terms'     => 1048, // i gotta narrow this down to the state level somehow
 			),
 			array(
 			   'taxonomy'  => $taxpracticeareas,
@@ -39,7 +39,7 @@
 	$termargs = array (
 		'taxonomy' => $taxlocations,
 		'object_ids' => $myposts->posts,
-		'parent' => 293, // location cat
+		'parent' => 1048, // location cat
 			
 	);
 	
@@ -51,7 +51,7 @@
 		if ( ! empty( $term_query ) && ! is_wp_error( $term_query ) ) {
 			foreach ( $term_query ->terms as $term )
 			
-					echo '<br/><a href="' . get_bloginfo('url') . '/' .  $taxpracticeareas . '/' . $currenttermslug . '/' . $term->slug . '">' . $term->name . '</a>';
+					echo '<br/><a href="' . get_bloginfo('url') . '/lawyers-practice/' . $currenttermslug . '/' . $term->slug . '">' . $term->name . '</a>';
 			
 			}
 

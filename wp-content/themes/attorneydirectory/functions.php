@@ -191,3 +191,94 @@ function cc_mime_types($mimes)
 
 add_filter('upload_mimes', 'cc_mime_types');
 
+
+///// Permalink Rewrites
+
+
+
+function prefix_rewrite_rule() {
+		
+		
+		add_rewrite_rule( 'lawyers-location/locations/([^/]+)/([^/]+)', 'index.php?office_location_currentstate=$matches[1]&office_location_currentcity=$matches[2]', 'top' );
+	
+		add_rewrite_rule( 'lawyers-practice/([^/]+)/([^/]+)/([^/]+)', 'index.php?office_pa=$matches[1]&currentstate=$matches[2]&currentcity=$matches[3]', 'top' );
+		
+		add_rewrite_rule( 'lawyers-practice/([^/]+)/([^/]+)', 'index.php?office_pa=$matches[1]&currentstate=$matches[2]', 'top' );
+    
+    
+ }
+ 
+add_action( 'init', 'prefix_rewrite_rule' );
+
+
+function prefix_register_query_var( $vars ) {
+    $vars[] = 'office_location_currentstate';
+    $vars[] = 'office_location_currentcity';
+    $vars[] = 'office_pa';
+    $vars[] = 'currentstate';
+    $vars[] = 'currentcity';
+ 
+    return $vars;
+}
+ 
+add_filter( 'query_vars', 'prefix_register_query_var' );
+
+
+function prefix_url_rewrite_templates() {
+	
+	
+	
+		if ( get_query_var( 'office_location_currentstate') && get_query_var( 'office_location_currentcity') ) { // or the other isset example  if(!isset( $wp_query->query['photos'] ))
+       
+	  
+	  	add_filter( 'template_include', function() {
+            return get_template_directory() . '/page-practicearea_city.php';
+       });
+
+    }
+		
+		
+		
+ 
+    if ( get_query_var( 'currentstate') ) { // or the other isset example  if(!isset( $wp_query->query['photos'] ))
+       
+	  
+	  	add_filter( 'template_include', function() {
+            return get_template_directory() . '/page-locations_state_pa.php';
+       });
+
+    }
+    
+    
+
+    if (get_query_var( 'currentstate') && get_query_var( 'currentcity')) { 
+       
+	    
+	    
+			add_filter( 'template_include', function() {
+            return get_template_directory() . '/page-locations_city_pa.php';
+       });
+
+
+    }
+
+}
+ 
+add_action( 'template_redirect', 'prefix_url_rewrite_templates' );
+
+
+
+
+// prevent logouts
+
+/*
+
+https://wordpress.stackexchange.com/questions/114439/preventing-session-timeout
+
+
+add_filter( 'auth_cookie_expiration', 'keep_me_logged_in_for_1_year' );
+function keep_me_logged_in_for_1_year( $expirein ) {
+    return 31556926; // 1 year in seconds
+}
+*/
+

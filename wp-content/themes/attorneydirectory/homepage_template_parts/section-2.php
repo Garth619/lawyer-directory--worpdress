@@ -5,12 +5,34 @@
 	<span>Practice Areas</span>
 	
 	
+	<?php $top_practice_areas_terms = get_field( 'top_practice_areas' );
+	
+		if ( $top_practice_areas_terms ) {
+				
+			echo "<ul>";
+		
+			foreach ( $top_practice_areas_terms as $top_practice_areas_term ) { ?>
+			
+			
+		
+				<li><?php echo $top_practice_areas_term->name;?></li>
+			
+			<?php }
+				
+			echo "</ul>";
+
+		} ?>
+		
+		<a class="see_all_pa" href="">Don't see what your looking for? See All Practice Areas</a><!-- see_all_pa -->
+	
+	
+<!--
 	<?php 
 		
 		
 	
 	$terms = get_terms( array(
-    'taxonomy' => 'practice_area',
+    'taxonomy' => 'office_practice_area',
 	
 	) );
 		
@@ -27,6 +49,7 @@
  }
 		
 	?>
+-->
 
 
 
