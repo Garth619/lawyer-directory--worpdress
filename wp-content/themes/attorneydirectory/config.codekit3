@@ -190,6 +190,17 @@
 		"oAP": "\/homepage_template_parts\/section-5.php",
 		"oF": 0
 		},
+	"\/images\/default.jpg": {
+		"ft": 16384,
+		"iS": 3105,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "\/images\/default.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
 	"\/index.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -310,6 +321,13 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/sidebar.php",
+		"oF": 0
+		},
+	"\/single-lawyer.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/single-lawyer.php",
 		"oF": 0
 		},
 	"\/single-office.php": {
