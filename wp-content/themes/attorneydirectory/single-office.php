@@ -82,7 +82,7 @@ https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2
 -->
 
 
-<!--
+
 
 <h2>Lawfirm Practice Areas</h2>
 
@@ -103,7 +103,7 @@ if ( $terms && ! is_wp_error( $terms ) ) :
    <?php printf( esc_html__( '%s', 'textdomain' ), esc_html( $pa_links_commas ) ); ?>
   
 <?php endif; ?>
--->
+
 
 
 
