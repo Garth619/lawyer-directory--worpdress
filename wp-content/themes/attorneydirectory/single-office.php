@@ -5,7 +5,15 @@
 <div class="breadcrumb">
 	
 	
-	<a href="<?php bloginfo('url');?>">Home</a> -> <a href="<?php bloginfo('url');?>/lawyers-location/locations">Locations</a> -> <a href="">California</a> -> <a href="">Los Angeles</a>
+<a href="<?php bloginfo('url');?>">Home</a> - 
+	
+	<a href="<?php the_permalink(554156);?>">Practice Areas</a>  - 
+	
+	<a class="" href="">Practice Area Name</a> - 
+	
+	<a class="" href="">Current State</a> - 
+	
+	current city
 	
 
 	
@@ -26,7 +34,7 @@
 
 <?php if(get_field('office_phone')):?>
 
-<p>phone: <a href="tel:<?php the_field( 'office_phone' ); ?>"><?php the_field( 'office_phone' ); ?></a></p>
+<p>Lawfirm Phone: <a href="tel:<?php the_field( 'office_phone' ); ?>"><?php the_field( 'office_phone' ); ?></a></p>
 
 <?php endif;?>
 

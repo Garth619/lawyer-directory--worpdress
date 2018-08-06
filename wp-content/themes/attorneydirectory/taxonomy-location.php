@@ -1,6 +1,21 @@
 <?php get_header(); ?>
 
 <div class="section_inner">
+	
+	<div class="breadcrumb">
+	
+	<a href="<?php bloginfo('url');?>">Home</a> - 
+	
+	<a href="<?php the_permalink(554158);?>">Locations</a>  - 
+	
+	<?php single_term_title();?>
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+</div><!-- breadcrumb -->
 
 <h1><?php single_term_title();?></h1>
 

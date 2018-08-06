@@ -1,10 +1,34 @@
 <?php get_header(); ?>
 
 <div class="section_inner">
+	
+<div class="breadcrumb">
+	
+	<a href="<?php bloginfo('url');?>">Home</a> - 
+	
+	<a href="<?php the_permalink(554156);?>">Practice Areas</a>  - 
+	
+	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>"><?php echo get_query_var( 'office_pa');?></a> - 
+	
+	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>/<?php echo get_query_var( 'currentstate');?>"><?php echo get_query_var( 'currentstate');?></a> - 
+	
+	<?php echo get_query_var( 'currentcity');?>
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+</div><!-- breadcrumb -->
 
-<h1><?php echo get_query_var( 'currentcity');?></h1>
+<h1><?php echo get_query_var( 'office_pa');?></h1>
 
-<h2><?php echo get_query_var( 'office_pa');?></h2>
+<br/>
+<br/>
+
+<h2><?php echo get_query_var( 'currentcity');?></h2>
+
+
 
 
 <?php 
@@ -12,6 +36,7 @@
 	echo "<br/>";
 	
 	$currentcity = get_query_var( 'currentcity');
+	$currentstate = get_query_var( 'currentstate');
 	$currentpracticearea =  get_query_var( 'office_pa');
 	
 	

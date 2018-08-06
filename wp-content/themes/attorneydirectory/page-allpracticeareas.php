@@ -7,6 +7,17 @@
 
 <div class="section_inner">
 	
+<div class="breadcrumb">
+	
+	<a href="<?php bloginfo('url');?>">Home</a> - Practice Areas
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+</div><!-- breadcrumb -->
+	
 	<h1>Practice Areas</h1>
 	
 	<?php 

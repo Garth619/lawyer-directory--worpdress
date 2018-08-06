@@ -3,6 +3,23 @@
 
 <div class="section_inner">
 	
+	<div class="breadcrumb">
+	
+	<a href="<?php bloginfo('url');?>">Home</a> - 
+	
+	<a href="<?php the_permalink(554158);?>">Locations</a>  - 
+	
+	<a href="<?php bloginfo('url');?>/lawyers-location/locations/<?php echo get_query_var( 'office_location_currentstate');?>"><?php echo get_query_var( 'office_location_currentstate');?></a>
+	
+	
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+</div><!-- breadcrumb -->
+	
 <?php
 	
 	$taxlocations = 'location';
@@ -15,7 +32,7 @@
 	echo '<h1>' . $lawfirm_location_currentcity . '</h1>';
     
 	     
-	   echo "Browse By Practice Area<br/></br/>";
+	   echo "<br/>Browse By Practice Area<br/></br/>";
 	     
 	   		$termids = get_terms( array( 
 		 			'taxonomy' => $taxpracticeareas,
