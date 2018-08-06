@@ -151,7 +151,7 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 
 <?php $mymain_querytwo = new WP_Query($new_args); while($mymain_querytwo->have_posts()) : $mymain_querytwo->the_post(); ?>
                 	
-     <h2 class="entry-title"><?php the_title(); ?></h2>
+     <h2 class="entry-title"><a href="<?the_permalink();?>"><?php the_title(); ?></a></h2>
      
      <br/>
 <br/>

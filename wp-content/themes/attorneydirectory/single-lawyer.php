@@ -4,14 +4,7 @@
 
 <div class="breadcrumb">
 	
-	
-<a href="<?php bloginfo('url');?>">Home</a> - 
-	
-	<a href="<?php the_permalink(554158);?>">Locations</a>  - 
-	
-	<a class="" href="">State</a> - 
-	
-	<a class="" href="">City</a>
+
 
 	
 	<br/>
@@ -29,6 +22,35 @@
 
 <br/>
 <br/>
+
+<?php $officeid = get_field('office_id');?>
+	
+	<?php $new_argsone = array(
+		//'posts_per_page' => 100,
+    'post_type' => 'office',
+    'meta_query' => array(
+        array(
+            'key' => 'office_id',
+//             'value' => '147432'
+            'value' => array($officeid)
+        )
+    )
+);?>
+
+
+<?php $mymain_queryone = new WP_Query($new_argsone); while($mymain_queryone->have_posts()) : $mymain_queryone->the_post(); ?>
+                	
+     	
+     	Lawfirm: <a href="<?php the_permalink();?>"><?php the_title();?></a>
+     	
+     	<br/>
+     	<br/>
+                    	
+                  
+ <?php endwhile; ?>
+<?php wp_reset_postdata(); // reset the query ?>	
+
+
 
 <h2>Practice Areas</h2>
 
