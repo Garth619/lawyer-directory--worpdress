@@ -76,7 +76,7 @@
 
 
 <!--
-3191 Paces Ferry Place, Suite 200, Atlanta, GA, 30305
+3191 Paces Ferry Place, Suite 200, Atlanta, GA, 30305 (if acf has link use that, otheriwise try to utomatically generate this url as temlate below
 
 https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2C%20Washington%2C%20District%20of%20Columbia%2C%2020003
 -->
@@ -84,7 +84,7 @@ https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2
 
 
 
-<h2>Lawfirm Practice Areas</h2>
+<h2><?php the_field( 'lawfirm_parent_name' ); ?>'s Practice Areas in <?php the_field( 'office_city' ); ?></h2>
 
 <?php $terms = get_the_terms( get_the_ID(), 'office_practice_area' );
                          
@@ -130,7 +130,7 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 <br/>
 
 
-	<h2>Attorneys</h2>
+	<h2><?php the_field( 'lawfirm_parent_name' ); ?>'s Attorneys in <?php the_field( 'office_city' ); ?></h2>
 	
 	
 	
@@ -246,6 +246,7 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 <?php wp_reset_postdata(); // reset the query ?>		
 
 
+(maybe other lawfirm locations with links, with their pas? one big firm list or under each locations?)
 
 </div>
 	
