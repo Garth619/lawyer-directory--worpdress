@@ -42,36 +42,34 @@
 <p><?php the_field( 'office_address' ); ?></p>
 
 
-<?php $firmid = get_field('firm_id');?>
+<?php $post_slug = get_post_field( 'post_name', get_post() ); 
 	
-	<?php $new_argsone = array(
-		//'posts_per_page' => 100,
-    'post_type' => 'firm',
-    'meta_query' => array(
-        array(
-            'key' => 'firm_id',
-//             'value' => '147432'
-            'value' => array($firmid)
-            
-        )
-    )
-);?>
-
-
-<?php $mymain_queryone = new WP_Query($new_argsone); while($mymain_queryone->have_posts()) : $mymain_queryone->the_post(); ?>
-                	
-     	<?php if(get_field('website_link')):?>
+	 $new_argsone = array(
+		'post_type' => 'firm',
+    'name' => $post_slug
+		);
+		
+		
+	 $mymain_queryone = new WP_Query($new_argsone); while($mymain_queryone->have_posts()) : $mymain_queryone->the_post();
+	 
+	
+	 if(get_field('website_link')):?>
      	
-     		<a href="<?php the_field( 'website_link' ); ?>" target="_blank">Visit Site</a>
+     <a href="<?php the_field( 'website_link' ); ?>" target="_blank">Visit Site</a>
      		
-     		<br/>
-     		<br/>
+     <br/>
+     <br/>
      	
-     	<?php endif;?>
+     	<?php endif;
+
                     	
                   
- <?php endwhile; ?>
-<?php wp_reset_postdata(); // reset the query ?>	
+ endwhile; 
+ wp_reset_postdata(); // reset the query ?>	
+
+
+
+
 
 
 
@@ -130,121 +128,6 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 <br/>
 <br/>
 
-
-	<h2><?php the_field( 'lawfirm_parent_name' ); ?>'s Attorneys in <?php the_field( 'office_city' ); ?></h2>
-	
-	
-	
-	<?php $officeid = get_field('office_id');?>
-	
-	<?php $new_args = array(
-		//'posts_per_page' => 100,
-    'post_type' => 'lawyer',
-    'meta_query' => array(
-        array(
-            'key' => 'office_id',
-//             'value' => '147432'
-            'value' => array($officeid)
-        )
-    )
-);?>
-
-
-<?php $mymain_querytwo = new WP_Query($new_args); while($mymain_querytwo->have_posts()) : $mymain_querytwo->the_post(); ?>
-                	
-     <h2 class="entry-title"><a href="<?the_permalink();?>"><?php the_title(); ?></a></h2>
-     
-     <br/>
-<br/>
-
-<img style="width:200px;" src="<?php bloginfo('template_directory');?>/images/default.jpg"/>
-
-<br/>
-<br/>
-
-<h2><?php the_title(); ?>'s Practice Areas</h2>
-
-
-<?php $terms = get_the_terms( get_the_ID(), 'practice_area' );
-                         
-if ( $terms && ! is_wp_error( $terms ) ) : 
- 
-    
- 
-    foreach ( $terms as $term ) {
-        echo "<br/>" . $term->name;
-    }
-                         
-   
-    
-    ?>
- 
-    
-<?php endif; ?>  
-
-<?php if(get_field('lawyer_bio')):?>
-
-	<?php the_field( 'lawyer_bio' ); ?>
-
-<?php endif;?>
-
-
-<?php if(get_field('school_one_name')):?>
-
-
-<br/>
-<br/>
-
-	<h2>Education</h2>
-
-	<p>School: <?php the_field( 'school_one_name' ); ?></p>
-	
-	<?php if(get_field('schoo_one_degree')):?>
-
-		<p>Degree: <?php the_field( 'schoo_one_degree' ); ?></p>
-
-	<?php endif;?>
-	
-	<?php if(get_field('school_one_year_graduated')):?>
-
-		<p>Year Graduated: <?php the_field( 'school_one_year_graduated' ); ?></p>
-
-	<?php endif;?>
-		
-
-<?php endif;?>
-
-
-
-
-<?php if(get_field('school_two_name')):?>
-
-	<br/>
-	
-
-	<p>School: <?php the_field( 'school_two_name' ); ?></p>
-	
-	<?php if(get_field('school_two_degree')):?>
-
-		<p>Degree: <?php the_field( 'school_two_degree' ); ?></p>
-
-	<?php endif;?>
-	
-	<?php if(get_field('school_two_year_graduated')):?>
-
-		<p>Year Graduated: <?php the_field( 'school_two_year_graduated' ); ?></p>
-
-	<?php endif;?>
-		
-
-<?php endif;?>
-
-
-             	
-                    	
-                  
- <?php endwhile; ?>
-<?php wp_reset_postdata(); // reset the query ?>		
 
 
 (maybe other lawfirm locations with links, with their pas? one big firm list or under each locations?)
