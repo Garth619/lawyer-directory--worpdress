@@ -52,7 +52,7 @@ https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2
 <br/>
 
 
-<!--
+
 <?php $post_slug = get_post_field( 'post_name', get_post() ); 
 	
 	 $new_argsone = array(
@@ -77,7 +77,7 @@ https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2
                   
  endwhile; 
  wp_reset_postdata(); // reset the query ?>	
--->
+
 
 
 

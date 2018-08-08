@@ -2,6 +2,8 @@
 
 <div class="section_inner">
 	
+
+	
 <div class="breadcrumb">
 	
 	<a href="<?php bloginfo('url');?>">Home</a> - 
@@ -33,7 +35,7 @@
 
 <?php 
 	
-	echo "<br/>";
+	
 	
 	$currentcity = get_query_var( 'currentcity');
 	$currentstate = get_query_var( 'currentstate');
@@ -63,21 +65,28 @@
 		),
 	);
 	
-	
+	echo "<ul>";
 	
 	$singlefirms = new WP_Query($query_args);
+	
 	
 	
 	while($singlefirms->have_posts()) : $singlefirms->the_post();?>
 	
 	
-	<br/>
+	<li>
 	
 	<a href="<?php the_permalink();?>"><?php the_title(); ?></a>
+	
+	</li>
   
   
   <?php endwhile;
+	  
+	  
   wp_reset_postdata();
+  
+  echo "</ul>";
 
 	
 	?>
