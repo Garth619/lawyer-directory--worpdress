@@ -110,7 +110,7 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 <br/>
 <br/>
 
-
+(maybe other lawfirm locations with links, with their pas? one big firm list or under each locations?)
 
 <br/>
 <br/>
@@ -125,11 +125,7 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 
 <h2><?php the_field( 'lawfirm_parent_name' ); ?>'s Attorneys in <?php the_field( 'office_city' ); ?></h2>
 
-(attorneys will list out here, working on this)
 
-<br/><br/>
-
-(also maybe other lawfirm locations with links?)
 
 
 <?php 
@@ -152,14 +148,144 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 	);
 
 
-	$lawyerposts = new Wp_Query( $lawyer_args ); ?>
-
-
+	$lawyerposts = new Wp_Query( $lawyer_args ); 
+	
+/*
+	while($lawyerposts->have_posts()) : $lawyerposts->the_post(); ?>
+	
+	<br/>
+	
+	<?php the_title();?>,
+	
+	
+  
+  <?php endwhile; ?>
+  <?php wp_reset_postdata(); // reset the query ?>
+*/
 
 
 
 	
-	 
+ if ( $terms && ! is_wp_error( $terms ) ) { 
+ 
+   foreach ( $terms as $term ) {
+        echo $term->name . "<br/>";
+    }
+ 
+ } ?>
+
+	
+	<?php $officeid = get_field('office_id');?>
+	
+	<?php $new_args = array(
+    'post_type' => 'lawyer',
+    'posts_per_page' => -1,
+//     'post__in' => ,
+    'meta_query' => array(
+        array(
+           'key' => 'office_id',
+           'value' => array($officeid)
+        )
+			)
+); ?>
+
+
+<?php $mymain_querytwo = new WP_Query($new_args); while($mymain_querytwo->have_posts()) : $mymain_querytwo->the_post(); ?>
+                	
+     <h2 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h2>
+     
+		 <br/>
+
+		 <img style="width:200px;" src="<?php bloginfo('template_directory');?>/images/default.jpg"/>
+
+		 <br/>
+		 <br/>
+
+		 <h2><?php the_title(); ?>'s Practice Areas</h2>
+
+
+<?php $terms = get_the_terms( get_the_ID(), 'practice_area' );
+                         
+if ( $terms && ! is_wp_error( $terms ) ) : 
+ 
+    
+ 
+    foreach ( $terms as $term ) {
+        echo "<br/>" . $term->name;
+    }
+                         
+   
+    
+    ?>
+ 
+    
+<?php endif; ?>  
+
+<?php if(get_field('lawyer_bio')):?>
+
+	<?php the_field( 'lawyer_bio' ); ?>
+
+<?php endif;?>
+
+
+<?php if(get_field('school_one_name')):?>
+
+
+<br/>
+<br/>
+
+	<h2>Education</h2>
+
+	<p>School: <?php the_field( 'school_one_name' ); ?></p>
+	
+	<?php if(get_field('schoo_one_degree')):?>
+
+		<p>Degree: <?php the_field( 'schoo_one_degree' ); ?></p>
+
+	<?php endif;?>
+	
+	<?php if(get_field('school_one_year_graduated')):?>
+
+		<p>Year Graduated: <?php the_field( 'school_one_year_graduated' ); ?></p>
+
+	<?php endif;?>
+		
+
+<?php endif;?>
+
+
+
+
+<?php if(get_field('school_two_name')):?>
+
+	<br/>
+	
+
+	<p>School: <?php the_field( 'school_two_name' ); ?></p>
+	
+	<?php if(get_field('school_two_degree')):?>
+
+		<p>Degree: <?php the_field( 'school_two_degree' ); ?></p>
+
+	<?php endif;?>
+	
+	<?php if(get_field('school_two_year_graduated')):?>
+
+		<p>Year Graduated: <?php the_field( 'school_two_year_graduated' ); ?></p>
+
+	<?php endif;?>
+		
+
+<?php endif;?>
+
+
+             	
+                    	
+                  
+ <?php endwhile; ?>
+<?php wp_reset_postdata(); // reset the query ?>	
+
+
 
 
 

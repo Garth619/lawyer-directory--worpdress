@@ -38,6 +38,7 @@
 	$query_args = array (
 		'post_type' => 'office',
 		'fields' => 'ids',
+		'posts_per_page' => -1,
 		'tax_query' => array(
 			 array(
 			   'taxonomy'  => $taxlocations,
@@ -59,6 +60,7 @@
 
 	$termargs = array (
 		'taxonomy' => $taxlocations,
+		'posts_per_page' => -1,
 		'object_ids' => $myposts->posts,
 		'parent' => 1048, // location cat
 			

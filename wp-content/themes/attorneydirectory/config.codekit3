@@ -330,6 +330,13 @@
 		"oAP": "\/single-lawyer.php",
 		"oF": 0
 		},
+	"\/single-office copy.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/single-office copy.php",
+		"oF": 0
+		},
 	"\/single-office.php": {
 		"cB": 0,
 		"ft": 8192,
