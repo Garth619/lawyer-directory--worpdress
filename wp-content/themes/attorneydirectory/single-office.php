@@ -52,6 +52,7 @@
             'key' => 'firm_id',
 //             'value' => '147432'
             'value' => array($firmid)
+            // 'compare' => 'LIKE'
         )
     )
 );?>
