@@ -126,11 +126,9 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 
 <h2><?php the_field( 'lawfirm_parent_name' ); ?>'s Attorneys in <?php the_field( 'office_city' ); ?></h2>
 
-(attorneys will list out here, working on this)
 
-<br/><br/>
 
-(also maybe other lawfirm locations with links?)
+
 
 
 <?php 
@@ -161,7 +159,15 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 	
 //$lawyer_ids = wp_list_pluck( $lawyerposts->posts, 'ID' );
 
-$lawyer_ids = array(2540);	
+// print_r($lawyer_ids);
+
+//$lawyer_ids = array(2540);	
+
+$lawyer_ids = $lawyerposts->posts;
+
+
+
+
 	
 	 ?>
 	
@@ -171,14 +177,19 @@ $lawyer_ids = array(2540);
 	<?php $new_args = array(
     'post_type' => 'lawyer',
     'posts_per_page' => -1,
-		'post__in' => $lawyer_ids,
+		'post__in' => $lawyer_ids, // pluck wasnt showing right array with integers
+		'fields' => 'ids',
     'meta_query' => array(
         array(
            'key' => 'office_id',
            'value' => array($officeid)
         )
 			)
-);  print_r($lawyer_ids); ?>
+);  
+
+
+
+ ?>
 
 
 <?php $mymain_querytwo = new WP_Query($new_args); while($mymain_querytwo->have_posts()) : $mymain_querytwo->the_post(); ?>
@@ -277,7 +288,9 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 <?php wp_reset_postdata(); // reset the query ?>	
 
 
+<br/><br/>
 
+(also maybe other lawfirm locations with links?)
 
 </div><!-- secton inner -->
 
