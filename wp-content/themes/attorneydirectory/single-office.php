@@ -43,7 +43,7 @@
 
 
 
-^  (note if acf has link use that, otherwise try to automatically generate into google maps link
+^  (note if acf has link use that, otherwise try to automatically generate into google maps link)
 <!--
 https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2C%20Washington%2C%20District%20of%20Columbia%2C%2020003
 -->
@@ -57,6 +57,7 @@ https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2
 	
 	 $new_argsone = array(
 		'post_type' => 'firm',
+		'post_status'   => 'publish',
     'name' => $post_slug
 		);
 		
@@ -134,12 +135,15 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 
 <?php 
 	
-	$term_names = wp_list_pluck( $terms, 'name' );
+	$term_names = wp_list_pluck( $terms, 'slug' );
 	
-	// print_r($term_names);
+	// getting an array of term slugs to use below in a tax query of the other cpt "lawyer". This is to reduce the amount of meta_queries to only specific terms.  This performance hit is unavoidable but doing it this way narrows down meta search from at least 550,000 to a range of 1 -40,000 depending on office post terms involved.  I am using term slugs because I am trying match office terms to exact lawyer terms. The two cpts (office and lawyers) have different term_ids but the same slugs. (I am also referenceing $terms higher up)
+	
+	//print_r($term_names);
 	
 	$lawyer_args = array (
 		'post_type' => 'lawyer',
+		'post_status'   => 'publish',
 		'fields' => 'ids',
 		'posts_per_page' => -1,
 		'tax_query' => array(
@@ -152,14 +156,125 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 	);
 
 
-	$lawyerposts = new Wp_Query( $lawyer_args ); ?>
-
-
-
-
-
+	$lawyerposts = new Wp_Query( $lawyer_args ); 
 	
-	 
+	
+//$lawyer_ids = wp_list_pluck( $lawyerposts->posts, 'ID' );
+
+$lawyer_ids = array(2540);	
+	
+	 ?>
+	
+	
+	<?php $officeid = get_field('office_id');?>
+	
+	<?php $new_args = array(
+    'post_type' => 'lawyer',
+    'posts_per_page' => -1,
+		'post__in' => $lawyer_ids,
+    'meta_query' => array(
+        array(
+           'key' => 'office_id',
+           'value' => array($officeid)
+        )
+			)
+);  print_r($lawyer_ids); ?>
+
+
+<?php $mymain_querytwo = new WP_Query($new_args); while($mymain_querytwo->have_posts()) : $mymain_querytwo->the_post(); ?>
+                	
+     <h2 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h2>
+     
+		 <br/>
+
+		 <img style="width:200px;" src="<?php bloginfo('template_directory');?>/images/default.jpg"/>
+
+		 <br/>
+		 <br/>
+
+		 <h2><?php the_title(); ?>'s Practice Areas</h2>
+
+
+<?php $terms = get_the_terms( get_the_ID(), 'practice_area' );
+                         
+if ( $terms && ! is_wp_error( $terms ) ) : 
+ 
+    
+ 
+    foreach ( $terms as $term ) {
+        echo "<br/>" . $term->name;
+    }
+                         
+   
+    
+    ?>
+ 
+    
+<?php endif; ?>  
+
+<?php if(get_field('lawyer_bio')):?>
+
+	<?php the_field( 'lawyer_bio' ); ?>
+
+<?php endif;?>
+
+
+<?php if(get_field('school_one_name')):?>
+
+
+<br/>
+<br/>
+
+	<h2>Education</h2>
+
+	<p>School: <?php the_field( 'school_one_name' ); ?></p>
+	
+	<?php if(get_field('schoo_one_degree')):?>
+
+		<p>Degree: <?php the_field( 'schoo_one_degree' ); ?></p>
+
+	<?php endif;?>
+	
+	<?php if(get_field('school_one_year_graduated')):?>
+
+		<p>Year Graduated: <?php the_field( 'school_one_year_graduated' ); ?></p>
+
+	<?php endif;?>
+		
+
+<?php endif;?>
+
+
+
+
+<?php if(get_field('school_two_name')):?>
+
+	<br/>
+	
+
+	<p>School: <?php the_field( 'school_two_name' ); ?></p>
+	
+	<?php if(get_field('school_two_degree')):?>
+
+		<p>Degree: <?php the_field( 'school_two_degree' ); ?></p>
+
+	<?php endif;?>
+	
+	<?php if(get_field('school_two_year_graduated')):?>
+
+		<p>Year Graduated: <?php the_field( 'school_two_year_graduated' ); ?></p>
+
+	<?php endif;?>
+		
+
+<?php endif;?>
+
+
+             	
+                    	
+                  
+ <?php endwhile; ?>
+<?php wp_reset_postdata(); // reset the query ?>	
 
 
 
