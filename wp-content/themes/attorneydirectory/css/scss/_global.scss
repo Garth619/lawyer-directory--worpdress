@@ -37,6 +37,7 @@ img.aligncenter {
 	}
 	p {
 		margin-bottom:25px;
+		line-height: 23px;
 	}
 ul {
 		max-width:1200px;
@@ -49,6 +50,36 @@ ul {
 		}
 	}
 
+}
+
+
+
+.attorney_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin:70px 0 25px;
+	.attorney_single_wrapper {
+		flex-basis: 48%;
+		margin-bottom:50px;
+	}
+}
+
+
+.breadcrumb {
+	a {
+		display: inline-block;
+		&:after {
+			content:"-";
+			display: inline-block;
+			margin:0 5px;
+		}
+		&:last-of-type {
+			&:after {
+				content:"";
+			}
+		}
+	}
 }
 
 
@@ -97,6 +128,22 @@ ul {
 
 }
 	
+	
+	
+	
+} /* Media Query */
+
+
+@media screen and (max-width: 834px) {
+	
+	
+	
+.attorney_wrapper {
+	.attorney_single_wrapper {
+		flex-basis: 100%; 
+	}
+}
+
 	
 	
 	

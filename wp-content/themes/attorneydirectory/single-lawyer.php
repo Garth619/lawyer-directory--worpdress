@@ -5,6 +5,34 @@
 <div class="breadcrumb">
 	
 
+	<a href="<?php bloginfo('url');?>">Home</a>
+	
+	<?php $officeid = get_field('office_id');
+	
+	$new_argsone = array(
+    'post_type' => 'office',
+    'meta_query' => array(
+        array(
+            'key' => 'office_id',
+						'value' => array($officeid)
+        )
+    )
+		); 
+
+
+ $mymain_queryone = new WP_Query($new_argsone); while($mymain_queryone->have_posts()) : $mymain_queryone->the_post(); ?>
+                	
+     	
+     <a href="<?php the_permalink();?>"><?php the_title();?></a>
+     
+     
+
+     	<br/>
+     	<br/>
+                    	
+                  
+ <?php endwhile; 
+ wp_reset_postdata(); // reset the query ?>	
 
 	
 	<br/>
@@ -23,34 +51,25 @@
 <br/>
 <br/>
 
-<?php $officeid = get_field('office_id');?>
+<?php 
 	
-	<?php $new_argsone = array(
-		//'posts_per_page' => 100,
-    'post_type' => 'office',
-    'meta_query' => array(
-        array(
-            'key' => 'office_id',
-//             'value' => '147432'
-            'value' => array($officeid)
-        )
-    )
-);?>
+	$lawfirmtitle = $mymain_queryone->posts[0]->post_title;
+	
+	$lawfirmslug = $mymain_queryone->posts[0]->post_name;
+	
+	$lawfirmid =  $mymain_queryone->posts[0]->ID;
+	
+?>
 
+Lawfirm: <a href="<?php bloginfo('url');?>/office/<?php echo $lawfirmslug;?>"><?php echo $lawfirmtitle;?></a>
 
-<?php $mymain_queryone = new WP_Query($new_argsone); while($mymain_queryone->have_posts()) : $mymain_queryone->the_post(); ?>
-                	
-     	
-     	Lawfirm: <a href="<?php the_permalink();?>"><?php the_title();?></a>
-     	
-     	<br/>
-     	<br/>
-                    	
-                  
- <?php endwhile; ?>
-<?php wp_reset_postdata(); // reset the query ?>	
+<br/>
+<br/>
 
+Phone: <a href="tel:<?php the_field('office_phone', $lawfirmid);?>"><?php the_field('office_phone', $lawfirmid);?></a>
 
+<br/>
+<br/>
 
 <h2>Practice Areas</h2>
 
@@ -62,7 +81,7 @@ if ( $terms && ! is_wp_error( $terms ) ) :
     
  
     foreach ( $terms as $term ) {
-        echo "<br/>" . $term->name;
+        echo $term->name . "<br/>";
     }
                          
    
@@ -107,6 +126,7 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 	<?php if(get_field('school_one_year_graduated')):?>
 
 		<p>Year Graduated: <?php the_field( 'school_one_year_graduated' ); ?></p>
+			<?php the_field( 'office_phone' ); ?>
 
 	<?php endif;?>
 		
@@ -120,6 +140,11 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 
 	<br/>
 	
+	<hr/>
+	
+	<br/>
+	
+	<br/>
 
 	<p>School: <?php the_field( 'school_two_name' ); ?></p>
 	

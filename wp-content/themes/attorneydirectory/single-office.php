@@ -1,17 +1,28 @@
 <?php get_header(); ?>
 
 <div class="section_inner">
+	
+
 
 <div class="breadcrumb">
 	
 	
-<a href="<?php bloginfo('url');?>">Home</a> - 
-	
-	<a href="<?php the_permalink(554158);?>">Locations</a>  - 
-	
-	<a class="" href="">State</a> - 
-	
-	<a class="" href="">City</a>
+<a href="<?php bloginfo('url');?>">Home</a>
+
+
+<?php $locationterms = get_the_terms( get_the_ID(), 'location' );
+                         
+if ( $locationterms && ! is_wp_error( $locationterms ) ) : 
+ 
+    foreach ( $locationterms as $term ) {
+	    
+	    	$locationterm_link = get_term_link( $term );
+        
+        echo '<a href="' . esc_url( $locationterm_link ) . '">' . $term->name . '</a>';
+    
+   }
+                         
+endif; ?> 
 
 	
 	<br/>
@@ -31,7 +42,7 @@
 
 <?php if(get_field('office_phone')):?>
 
-<p>Lawfirm Phone: <a href="tel:<?php the_field( 'office_phone' ); ?>"><?php the_field( 'office_phone' ); ?></a></p>
+<p>Phone: <a href="tel:<?php the_field( 'office_phone' ); ?>"><?php the_field( 'office_phone' ); ?></a></p>
 
 <?php endif;?>
 
@@ -43,12 +54,15 @@
 
 
 
-^  (note if acf has link use that, otherwise try to automatically generate into google maps link)
+
 <!--
+	
+^  (note if acf has link use that, otherwise try to automatically generate into google maps link)	
+	
 https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2C%20Washington%2C%20District%20of%20Columbia%2C%2020003
 -->
 
-<br/>
+
 <br/>
 
 
@@ -80,7 +94,7 @@ https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2
  wp_reset_postdata(); // reset the query ?>	
 
 
-
+<br/>
 
 <h2><?php the_field( 'lawfirm_parent_name' ); ?>'s Practice Areas in <?php the_field( 'office_city' ); ?></h2>
 
@@ -89,10 +103,16 @@ https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2
 
                          
 if ( $terms && ! is_wp_error( $terms ) ) { 
- 
+ 		
+ 		echo "<ul>";
+ 		
    foreach ( $terms as $term ) {
-        echo $term->name . "<br/><br/>";
+        
+        echo "<li>" . $term->name . "</li>";
+    
     }
+    
+    echo "</ul>";
  
  } ?>
 
@@ -108,17 +128,10 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 
 <?php endif;?>
 
-<br/>
-<br/>
-
-
-
-<br/>
-<br/>
-<br/>
 
 <hr/>
 
+<br/>
 <br/>
 <br/>
 
@@ -190,10 +203,16 @@ $lawyer_ids = $lawyerposts->posts;
 
 
  ?>
+ 
+ 
+ <div class="attorney_wrapper">
 
 
 <?php $mymain_querytwo = new WP_Query($new_args); while($mymain_querytwo->have_posts()) : $mymain_querytwo->the_post(); ?>
                 	
+     
+   <div class="attorney_single_wrapper">
+     
      <h2 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h2>
      
 		 <br/>
@@ -213,21 +232,32 @@ if ( $terms && ! is_wp_error( $terms ) ) :
     
  
     foreach ( $terms as $term ) {
-        echo "<br/>" . $term->name;
+        echo $term->name . "<br/>";
     }
                          
    
     
-    ?>
+   ?>
  
     
 <?php endif; ?>  
+
+<?php if(get_field('years_licensed_for')):?>
+
+<br/>
+<br/>
+
+<h2>Years Licensed For: <?php the_field( 'years_licensed_for' ); ?> </h2>
+
+<?php endif;?>
 
 <?php if(get_field('lawyer_bio')):?>
 
 	<?php the_field( 'lawyer_bio' ); ?>
 
 <?php endif;?>
+
+
 
 
 <?php if(get_field('school_one_name')):?>
@@ -259,7 +289,11 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 
 
 <?php if(get_field('school_two_name')):?>
-
+	
+	<br/>
+	
+	<hr/>
+	<br/>
 	<br/>
 	
 
@@ -280,12 +314,15 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 
 <?php endif;?>
 
-
+   </div><!-- attorney_single_wrapper -->
              	
                     	
                   
  <?php endwhile; ?>
 <?php wp_reset_postdata(); // reset the query ?>	
+
+
+</div><!-- attorney_wrapper -->
 
 
 <br/><br/>
