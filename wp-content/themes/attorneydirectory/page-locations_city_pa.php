@@ -2,19 +2,17 @@
 
 <div class="section_inner">
 	
-
-	
 <div class="breadcrumb">
 	
-	<a href="<?php bloginfo('url');?>">Home</a> - 
+	<a href="<?php bloginfo('url');?>">Home</a>
 	
-	<a href="<?php the_permalink(554156);?>">Practice Areas</a>  - 
+	<a href="<?php the_permalink(554156);?>">Practice Areas</a> 
 	
-	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>"><?php echo get_query_var( 'office_pa');?></a> - 
+	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>"><?php echo get_query_var( 'office_pa');?></a>
 	
-	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>/<?php echo get_query_var( 'currentstate');?>"><?php echo get_query_var( 'currentstate');?></a> - 
+	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>/<?php echo get_query_var( 'currentstate');?>"><?php echo get_query_var( 'currentstate');?></a>
 	
-	<?php echo get_query_var( 'currentcity');?>
+	<a><?php echo get_query_var( 'currentcity');?></a>
 	
 	<br/>
 	<br/>
@@ -23,15 +21,20 @@
 	
 </div><!-- breadcrumb -->
 
-<h1><?php echo get_query_var( 'office_pa');?></h1>
+<h1><?php echo get_query_var( 'currentcity');?> <?php echo get_query_var( 'office_pa');?> Lawyers</h1>
+
+<div class="content">
+
+<?php the_field( 'practice_areas_by_lawfirm','option'); ?>
+
+</div>
 
 <br/>
 <br/>
 
-<h2><?php echo get_query_var( 'currentcity');?></h2>
 
 
-
+Browse by Lawfirm
 
 <?php 
 	

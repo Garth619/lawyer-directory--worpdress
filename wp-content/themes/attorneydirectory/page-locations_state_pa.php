@@ -4,13 +4,13 @@
 	
 <div class="breadcrumb">
 	
-	<a href="<?php bloginfo('url');?>">Home</a> - 
+	<a href="<?php bloginfo('url');?>">Home</a>
 	
-	<a href="<?php the_permalink(554156);?>">Practice Areas</a> - 
+	<a href="<?php the_permalink(554156);?>">Practice Areas</a>
 	
-	<a href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>"><?php echo get_query_var( 'office_pa');?></a> - 
+	<a href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>"><?php echo get_query_var( 'office_pa');?></a>
 	
-	<?php echo get_query_var( 'currentstate');?>
+	<a><?php echo get_query_var( 'currentstate');?></a>
 	
 	<br/>
 	<br/>
@@ -19,12 +19,15 @@
 	
 </div><!-- breadcrumb -->
 
-<h1><?php echo get_query_var( 'office_pa');?></h1>
+<h1><?php echo get_query_var( 'currentstate');?> <?php echo get_query_var( 'office_pa');?> Lawyers</h1>
 
-<br/>
-<br/>
+<div class="content">
+	
+	<?php the_field( 'practice_areas_by_city','option'); ?>
+	
+</div><!-- content -->
 
-<h2><?php echo get_query_var( 'currentstate');?></h2>
+<br></br>Browse by City
 
 <?php 
 	

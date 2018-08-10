@@ -9,7 +9,9 @@
 	
 <div class="breadcrumb">
 	
-	<a href="<?php bloginfo('url');?>">Home</a> - Practice Areas
+	<a href="<?php bloginfo('url');?>">Home</a>
+	
+	<a>Practice Areas</a>
 	
 	<br/>
 	<br/>

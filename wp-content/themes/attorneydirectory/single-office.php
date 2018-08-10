@@ -4,25 +4,31 @@
 	
 
 
-<div class="breadcrumb">
+<div class="breadcrumb office">
 	
-	
-<a href="<?php bloginfo('url');?>">Home</a>
+<ul>
+<li><a href="<?php bloginfo('url');?>">Home</a>
 
 
-<?php $locationterms = get_the_terms( get_the_ID(), 'location' );
-                         
-if ( $locationterms && ! is_wp_error( $locationterms ) ) : 
- 
-    foreach ( $locationterms as $term ) {
-	    
-	    	$locationterm_link = get_term_link( $term );
-        
-        echo '<a href="' . esc_url( $locationterm_link ) . '">' . $term->name . '</a>';
-    
-   }
-                         
-endif; ?> 
+<?php
+$taxonomy = 'location'; // change this to your taxonomy
+$terms = wp_get_post_terms( $post->ID, $taxonomy, array( "fields" => "ids") );
+if( $terms ) {
+  
+
+  $terms = trim( implode( ',', (array) $terms ), ' ,' );
+  
+  wp_list_categories( 'title_li=&taxonomy=' . $taxonomy . '&include=' . $terms );
+
+  
+}
+?>
+
+</li>
+
+<li><?php the_title();?></li>
+
+</ul>
 
 	
 	<br/>
@@ -31,7 +37,7 @@ endif; ?>
 	
 </div><!-- breadcrumb -->
 	
-<h1><?php the_title();?></h1>
+<h1><?php the_title();?> Lawfirm</h1>
 
 <br/>
 <br/>
@@ -44,6 +50,8 @@ endif; ?>
 
 <p>Phone: <a href="tel:<?php the_field( 'office_phone' ); ?>"><?php the_field( 'office_phone' ); ?></a></p>
 
+(^ if acf has value of NULL, don't display)<br/>
+
 <?php endif;?>
 
 <br/>
@@ -53,11 +61,15 @@ endif; ?>
 <p><?php the_field( 'office_address' ); ?></p>
 
 
+^  (note if acf has link use that, otherwise try to automatically generate into google maps link)	
+
+<br/>
+<br/>
 
 
 <!--
 	
-^  (note if acf has link use that, otherwise try to automatically generate into google maps link)	
+
 	
 https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2C%20Washington%2C%20District%20of%20Columbia%2C%2020003
 -->
@@ -82,6 +94,13 @@ https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2
 	 if(get_field('website_link')):?>
      	
      <a href="<?php the_field( 'website_link' ); ?>" target="_blank">Visit Site</a>
+     
+     <br/>
+     <br/>
+     
+     (^ if acf has value of NULL, don't display)<br/>
+     
+     (regex if already has http:// or https:// or http://www. or https://www. leave alone otherwise fix to have //)
      		
      <br/>
      <br/>
@@ -120,13 +139,6 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 
 <?php endif;?>
 
-<!-- this needs to call the firm id parent acf website -->
-
-<?php if(get_sub_field('lawfirm_website_urls')):?>
-
-	<p>Visit Website:<a href="<?php the_field( 'lawfirm_website_url' ); ?>" target="_blank"> <?php the_title();?></a></p>
-
-<?php endif;?>
 
 
 <hr/>

@@ -7,11 +7,13 @@
 	
 	<div class="breadcrumb">
 	
-	<a href="<?php bloginfo('url');?>">Home</a> - 
+	<a href="<?php bloginfo('url');?>">Home</a>
 	
-	<a href="<?php the_permalink(554158);?>">Locations</a>  - 
+	<a href="<?php the_permalink(554158);?>">Locations</a>
 	
 	<a href="<?php bloginfo('url');?>/lawyers-location/locations/<?php echo get_query_var( 'office_location_currentstate');?>"><?php echo get_query_var( 'office_location_currentstate');?></a>
+	
+	<a><?php echo get_query_var( 'office_location_currentcity');?></a>
 	
 	
 	

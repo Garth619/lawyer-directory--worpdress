@@ -84,6 +84,53 @@ ul {
 
 
 
+.breadcrumb.office {
+	ul {
+		column-count:1;
+		margin:0;
+		display: flex;
+		
+		li {
+			margin:0;
+			display: flex;
+			a {
+				display: inline-block;
+				&:after {
+					content:"-";
+					display: inline-block;
+					margin:0 5px;
+				}
+			}
+		}
+		> ul.children {
+			> li {
+				> ul.children {
+						li {
+							a {
+								&:after {
+									content:"";
+								}
+							}
+						}
+				}
+			}
+		}
+	}
+}
+
+
+/*
+.breadcrumb.office > ul > li > ul > li > ul > li > a:after {
+	content:"";
+}
+*/
+
+
+.content {
+	margin-top:45px;
+}
+
+
 @media screen and (max-width: 1095px) {
 	
 	

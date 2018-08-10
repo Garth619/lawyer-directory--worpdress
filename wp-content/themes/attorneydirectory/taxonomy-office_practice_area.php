@@ -5,26 +5,29 @@
 
 <div class="breadcrumb">
 	
-	<a href="<?php bloginfo('url');?>">Home</a> - 
+	<a href="<?php bloginfo('url');?>">Home</a>
 	
-	<a href="<?php the_permalink(554156);?>">Practice Areas</a>  - 
+	<a href="<?php the_permalink(554156);?>">Practice Areas</a>
 	
-	<?php single_term_title();?>
+	<a><?php single_term_title();?></a>
 	
-	<br/>
 	<br/>
 	<br/>
 	<br/>
 	
 </div><!-- breadcrumb -->
 
+
+<h1><?php single_term_title();?> Lawyers</h1>
+
+
+<div class="content">
 	
+	<?php the_field( 'practice_area_by_state_content','option'); ?>
+	
+</div><!-- content -->
 
-
-
-<h1><?php single_term_title();?></h1>
-
-<h2>Browse by State</h2>
+<br></br>Browse by State
 
 
 <?php 

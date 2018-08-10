@@ -166,19 +166,34 @@ if (function_exists('acf_add_options_page')) {
         'redirect' => false
     ));
     acf_add_options_page(array(
+        'page_title' => 'PA by State Content',
+        'menu_title' => 'PA by State Content',
+        'menu_slug' => 'pa-general-settings',
+        'capability' => 'edit_posts',
+        'redirect' => false
+    ));
+     acf_add_options_page(array(
+        'page_title' => 'PA by City Content',
+        'menu_title' => 'PA by City Content',
+        'menu_slug' => 'pa-city-general-settings',
+        'capability' => 'edit_posts',
+        'redirect' => false
+    ));
+    acf_add_options_page(array(
+        'page_title' => 'PA by Lawfirm Content',
+        'menu_title' => 'PA by Lawfirm Content',
+        'menu_slug' => 'pa-lawfirm-general-settings',
+        'capability' => 'edit_posts',
+        'redirect' => false
+    ));
+    acf_add_options_page(array(
         'page_title' => 'Footer Settings',
         'menu_title' => 'Footer Settings',
         'menu_slug' => 'footer-general-settings',
         'capability' => 'edit_posts',
         'redirect' => false
     ));
-    acf_add_options_page(array(
-        'page_title' => 'Review Settings',
-        'menu_title' => 'Review Settings',
-        'menu_slug' => 'review-general-settings',
-        'capability' => 'edit_posts',
-        'redirect' => false
-    ));
+    
 }
 
 /* ALLOW SVGs IN MEDIA UPLOAD
