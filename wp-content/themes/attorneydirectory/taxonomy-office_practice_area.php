@@ -21,12 +21,6 @@
 <h1><?php single_term_title();?> Lawyers</h1>
 
 
-<div class="content">
-	
-	<?php the_field( 'practice_area_by_state_content','option'); ?>
-	
-</div><!-- content -->
-
 <br></br>Browse by State
 
 

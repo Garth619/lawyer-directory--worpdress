@@ -166,13 +166,19 @@ if (function_exists('acf_add_options_page')) {
         'redirect' => false
     ));
     acf_add_options_page(array(
-        'page_title' => 'Content Blocks Settings',
-        'menu_title' => 'Content Blocks Settings',
+        'page_title' => 'Location Content Blocks Settings',
+        'menu_title' => 'Location Content Blocks Settings',
         'menu_slug' => 'content-blocks-settings',
         'capability' => 'edit_posts',
         'redirect' => false
     ));
-   
+   acf_add_options_page(array(
+        'page_title' => 'PA/Location Content Blocks Settings',
+        'menu_title' => 'PA/Location Content Blocks Settings',
+        'menu_slug' => 'pa-locations-content-blocks-settings',
+        'capability' => 'edit_posts',
+        'redirect' => false
+    ));
     acf_add_options_page(array(
         'page_title' => 'Footer Settings',
         'menu_title' => 'Footer Settings',

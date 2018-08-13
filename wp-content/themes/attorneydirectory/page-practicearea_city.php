@@ -15,8 +15,6 @@
 	
 	<a><?php echo get_query_var( 'office_location_currentcity');?></a>
 	
-		
-	
 	<br/>
 	<br/>
 	<br/>
@@ -33,7 +31,7 @@
 	$lawfirm_location_currentcity = get_query_var( 'office_location_currentcity');
 	
 	
-	echo '<h1>' . $lawfirm_location_currentcity . '</h1>';
+	echo '<h1>' . $lawfirm_location_currentcity . ' Lawyers</h1>';
     
 
 	     
@@ -58,11 +56,17 @@
 		 			 
 		 			 while(has_sub_field('content_blocks','option')) {
 			 			 
-			 			 if(get_sub_field('current_taxomony') == $termcityid)
+			 			 if(get_sub_field('current_taxonomy') == $termcityid)
 			 			 
 			 			 	the_sub_field('block');
 		 			 		
 		 			 	}
+		 			 	
+		 			 	if(is_user_logged_in()) {
+	
+		 			 		echo '<a href="' . get_bloginfo('url') .  '/wp-admin/admin.php?page=content-blocks-settings">Edit</a><br/><br/><br/>';
+			 		
+				}
 		 		 
 		 		}	
 		 		
@@ -116,7 +120,12 @@
 				
 				echo "</ul>";
 
-		
+				
+				if(is_user_logged_in()) {
+	
+					echo '<a href="' . get_bloginfo('url') .  '/wp-admin/edit-tags.php?taxonomy=office_practice_area&post_type=office">Edit</a><br/><br/><br/>';
+			 		
+				}
 
 	?>
 	

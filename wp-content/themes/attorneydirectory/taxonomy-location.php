@@ -17,11 +17,11 @@
 	
 </div><!-- breadcrumb -->
 
-<h1><?php single_term_title();?></h1>
+<h1><?php single_term_title();?> Lawyers</h1>
 
 	
 <?php	$children = get_queried_object()->term_id;
-	
+
 	
 	if(get_field('content_blocks','option')) {
 		 		 
@@ -29,21 +29,26 @@
 		 			 
 		 	while(has_sub_field('content_blocks','option')) {
 			 			 
-			 if(get_sub_field('current_taxomony') == $children)
+			 if(get_sub_field('current_taxonomy') == $children) {
 			 			 
 			 		the_sub_field('block');
+			 		
+			 		}
 		 			 		
 		 		}
-		 		 
+		 		
+		 		if(is_user_logged_in()) {
+			 		
+			 		echo '<a href="' . get_bloginfo('url') .  '/wp-admin/admin.php?page=content-blocks-settings">Edit</a><br/><br/><br/>';
+			 		
+		 		}
+
 		}	
 
 
 	echo "Browse By City";
 
-	
-	
-	
-	
+
 	
 	$taxlocations = 'location';
 	$taxpracticeareas = 'office_practice_area';
@@ -71,6 +76,12 @@
      echo '</ul>';
      
      }
+     
+     if(is_user_logged_in()) {
+	
+				echo '<a href="' . get_bloginfo('url') .  '/wp-admin/edit-tags.php?taxonomy=location&post_type=office">Edit</a><br/><br/><br/>';
+			 		
+			}
     
     
 	?>

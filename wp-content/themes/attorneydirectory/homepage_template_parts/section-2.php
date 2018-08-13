@@ -26,7 +26,7 @@
 		<a class="see_all_pa" href="<?php the_permalink(554156);?>">Don't see what your looking for? See All Practice Areas</a><!-- see_all_pa -->
 	
 
-
+		<?php edit_post_link( __( 'Edit'), '<br/><br/>', '' ); ?>
 
 	</div><!-- section_inner -->
 

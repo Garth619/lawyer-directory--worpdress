@@ -22,11 +22,14 @@
 	
 	<h1>Practice Areas</h1>
 	
+	
+	<?php get_template_part( 'loop', 'page' ); ?>
+	
+	
+	
 	<?php 
 		
-		
-	
-	$terms = get_terms( array(
+		$terms = get_terms( array(
     'taxonomy' => 'office_practice_area',
 	
 	) );

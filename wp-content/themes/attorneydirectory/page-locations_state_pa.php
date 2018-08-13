@@ -21,11 +21,7 @@
 
 <h1><?php echo get_query_var( 'currentstate');?> <?php echo get_query_var( 'office_pa');?> Lawyers</h1>
 
-<div class="content">
-	
-	<?php the_field( 'practice_areas_by_city','option'); ?>
-	
-</div><!-- content -->
+do this one still
 
 <br></br>Browse by City
 
@@ -90,7 +86,7 @@
 			
 			echo "</ul>";
 
-
+			
 
 ?>
 

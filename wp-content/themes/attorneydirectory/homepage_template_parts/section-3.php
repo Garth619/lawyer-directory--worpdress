@@ -33,10 +33,12 @@
 	
 		?>
 
-		<br/>
-		<br/>
 		
 		
+		<?php edit_post_link( __( 'Edit'), '<br/><br/>', '' ); ?>
+		
+		<br/>
+		<br/>
 		
 	
 	</div>

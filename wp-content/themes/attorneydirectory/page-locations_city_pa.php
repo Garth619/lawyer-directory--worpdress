@@ -25,14 +25,14 @@
 
 <div class="content">
 
-<?php the_field( 'practice_areas_by_lawfirm','option'); ?>
+
 
 </div>
 
 <br/>
 <br/>
 
-
+and this one
 
 Browse by Lawfirm
 
@@ -90,6 +90,12 @@ Browse by Lawfirm
   wp_reset_postdata();
   
   echo "</ul>";
+  
+  if(is_user_logged_in()) {
+	
+					echo '<a href="' . get_bloginfo('url') .  '/wp-admin/edit.php?post_type=office">Edit</a><br/><br/><br/>';
+			 		
+				}
 
 	
 	?>

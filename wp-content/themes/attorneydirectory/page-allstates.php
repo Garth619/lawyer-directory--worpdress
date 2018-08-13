@@ -22,6 +22,8 @@
 	
 	<h1>States</h1>
 	
+	<?php get_template_part( 'loop', 'page' ); ?>
+	
 	<?php 
 		
 	$state_terms = get_terms( array( // change new WP_Term_Query later, its newer and faster i think
@@ -41,6 +43,13 @@
      }
      echo '</ul>';
  }
+ 
+ 
+  if(is_user_logged_in()) {
+	
+	echo '<a href="' . get_bloginfo('url') .  '/wp-admin/edit-tags.php?taxonomy=location&post_type=office">Edit</a><br/><br/><br/>';
+			 		
+	}
 		
 	?>
 

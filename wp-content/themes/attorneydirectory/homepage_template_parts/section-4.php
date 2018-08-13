@@ -25,8 +25,18 @@
      }
      echo '</ul>';
  }
+ 
+ 
+ if(is_user_logged_in()) {
+	
+	echo '<a href="' . get_bloginfo('url') .  '/wp-admin/edit-tags.php?taxonomy=location&post_type=office">Edit</a><br/><br/><br/>';
+			 		
+	}
+ 
+ 
 		
 	?>
+		
 		
 		
 	
