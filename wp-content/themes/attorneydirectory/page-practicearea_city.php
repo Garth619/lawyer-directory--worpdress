@@ -15,7 +15,7 @@
 	
 	<a><?php echo get_query_var( 'office_location_currentcity');?></a>
 	
-	
+		
 	
 	<br/>
 	<br/>
@@ -35,8 +35,7 @@
 	
 	echo '<h1>' . $lawfirm_location_currentcity . '</h1>';
     
-	     
-	   echo "<br/>Browse By Practice Area<br/></br/>";
+
 	     
 	   		$termids = get_terms( array( 
 		 			'taxonomy' => $taxpracticeareas,
@@ -52,6 +51,22 @@
 		 		
 		 		$termcityid = $currenttermid->term_id;
 		 		
+		 		
+		 	 if(get_field('content_blocks','option')) {
+		 		 
+		 			 echo "<br/><br/>";
+		 			 
+		 			 while(has_sub_field('content_blocks','option')) {
+			 			 
+			 			 if(get_sub_field('current_taxomony') == $termcityid)
+			 			 
+			 			 	the_sub_field('block');
+		 			 		
+		 			 	}
+		 		 
+		 		}	
+		 		
+		 		echo "<br/>Browse By Practice Area<br/></br/>";	 		
 		 		
 		 		$args = array (
 		 			'post_type' => 'office',

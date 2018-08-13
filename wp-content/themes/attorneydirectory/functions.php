@@ -166,26 +166,13 @@ if (function_exists('acf_add_options_page')) {
         'redirect' => false
     ));
     acf_add_options_page(array(
-        'page_title' => 'PA by State Content',
-        'menu_title' => 'PA by State Content',
-        'menu_slug' => 'pa-general-settings',
+        'page_title' => 'Content Blocks Settings',
+        'menu_title' => 'Content Blocks Settings',
+        'menu_slug' => 'content-blocks-settings',
         'capability' => 'edit_posts',
         'redirect' => false
     ));
-     acf_add_options_page(array(
-        'page_title' => 'PA by City Content',
-        'menu_title' => 'PA by City Content',
-        'menu_slug' => 'pa-city-general-settings',
-        'capability' => 'edit_posts',
-        'redirect' => false
-    ));
-    acf_add_options_page(array(
-        'page_title' => 'PA by Lawfirm Content',
-        'menu_title' => 'PA by Lawfirm Content',
-        'menu_slug' => 'pa-lawfirm-general-settings',
-        'capability' => 'edit_posts',
-        'redirect' => false
-    ));
+   
     acf_add_options_page(array(
         'page_title' => 'Footer Settings',
         'menu_title' => 'Footer Settings',
@@ -245,6 +232,7 @@ function prefix_url_rewrite_templates() {
 	
 		if ( get_query_var( 'office_location_currentstate') && get_query_var( 'office_location_currentcity') ) { // or the other isset example  if(!isset( $wp_query->query['photos'] ))
        
+     
 	  
 	  	add_filter( 'template_include', function() {
             return get_template_directory() . '/page-practicearea_city.php';
