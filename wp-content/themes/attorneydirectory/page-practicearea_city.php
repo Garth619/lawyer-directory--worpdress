@@ -21,7 +21,7 @@
 	<br/>
 	
 </div><!-- breadcrumb -->
-	
+
 <?php
 	
 	$taxlocations = 'location';
@@ -56,17 +56,20 @@
 		 			 
 		 			 while(has_sub_field('content_blocks','option')) {
 			 			 
-			 			 if(get_sub_field('current_taxonomy') == $termcityid)
+			 			 if(get_sub_field('current_taxonomy') == $termcityid) {
 			 			 
 			 			 	the_sub_field('block');
 		 			 		
 		 			 	}
 		 			 	
-		 			 	if(is_user_logged_in()) {
+		 			 	
+					}
+					
+					if(is_user_logged_in()) {
 	
 		 			 		echo '<a href="' . get_bloginfo('url') .  '/wp-admin/admin.php?page=content-blocks-settings">Edit</a><br/><br/><br/>';
 			 		
-				}
+						}
 		 		 
 		 		}	
 		 		

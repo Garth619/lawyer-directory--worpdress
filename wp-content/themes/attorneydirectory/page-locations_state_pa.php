@@ -25,7 +25,7 @@ do this one still
 
 <br></br>Browse by City
 
-<?php 
+<?php
 	
 	$currentpracticearea = get_query_var( 'office_pa');
 	$currentstate = get_query_var( 'currentstate');

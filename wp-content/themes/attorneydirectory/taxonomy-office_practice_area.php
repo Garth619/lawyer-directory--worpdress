@@ -21,13 +21,44 @@
 <h1><?php single_term_title();?> Lawyers</h1>
 
 
-<br></br>Browse by State
+start on this one
 
 
-<?php 
+
+
+<?php
 	
 
 	$currentterm = get_queried_object()->term_id; 
+	
+	
+	
+		if(get_field('pa_location_content_blocks','option')) {
+		 		 
+		 	echo "<br/><br/>";
+		 			 
+		 	while(has_sub_field('pa_location_content_blocks','option')) {
+			 			 
+			 	if(get_sub_field('current_taxonomy') == $currentterm && empty(get_sub_field('current_location_taxonomy_state')) && empty(get_sub_field('current_location_taxonomy_city')) ) {
+			 			 
+			 		the_sub_field('block');
+		 			 		
+		 		}
+		 			 	
+		 	}
+			
+			if(is_user_logged_in()) {
+	
+		 			echo '<a href="' . get_bloginfo('url') .  '/wp-admin/admin.php?page=content-blocks-settings">Edit</a><br/><br/><br/>';
+			 		
+				}
+		 		 
+		}	
+		
+		
+		echo "<br></br>Browse by State";
+	
+	
 	
 	$taxlocations = 'location';
 	$taxpracticeareas = 'office_practice_area';
