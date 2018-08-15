@@ -163,7 +163,9 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 
 <?php endif;?>
 
-
+<br/>
+<br/>
+(^ hide education if these say NULL!)
 
 
 </div>

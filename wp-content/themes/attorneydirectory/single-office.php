@@ -149,7 +149,7 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 
 <!-- attorneys -->
 
-<h2><?php the_field( 'lawfirm_parent_name' ); ?>'s Attorneys in <?php the_field( 'office_city' ); ?></h2>
+<h2><?php the_field( 'lawfirm_parent_name' ); ?>'s Lawyers in <?php the_field( 'office_city' ); ?></h2>
 
 
 
@@ -333,13 +333,17 @@ if ( $terms && ! is_wp_error( $terms ) ) :
  <?php endwhile; ?>
 <?php wp_reset_postdata(); // reset the query ?>	
 
+<br/>
+<br/>
+(^ hide education if these say NULL!)
+
 
 </div><!-- attorney_wrapper -->
 
 
 <br/><br/>
 
-(also maybe other lawfirm locations with links?)
+(also maybe other lawfirm locations with links can go here?)
 
 </div><!-- secton inner -->
 

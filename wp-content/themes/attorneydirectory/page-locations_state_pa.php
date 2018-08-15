@@ -21,7 +21,7 @@
 
 <h1><?php echo get_query_var( 'currentstate');?> <?php echo get_query_var( 'office_pa');?> Lawyers</h1>
 
-do this one still
+<!-- do this one still -->
 
 <br></br>Browse by City
 

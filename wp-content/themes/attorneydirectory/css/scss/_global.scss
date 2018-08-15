@@ -91,12 +91,13 @@ ul {
 		column-count:1;
 		margin:0;
 		display: flex;
-		
+		max-width:100%;
 		li {
 			margin:0;
 			display: flex;
+			width:auto;
 			a {
-				display: inline-block;
+				//display: inline-block;
 				&:after {
 					content:"-";
 					display: inline-block;
