@@ -46,34 +46,51 @@ if( $terms ) {
 
 <br/>
 
-<?php if(get_field('office_phone')):?>
 
-<p>Phone: <a href="tel:<?php the_field( 'office_phone' ); ?>"><?php the_field( 'office_phone' ); ?></a></p>
 
-(^ if acf has value of NULL, don't display)<br/>
+<?php if(get_field('office_phone') == ('NULL') || empty(get_field('office_phone'))) {
+	
+	
+}
+		 
+	
+	else { ?>
+		 
+		 <p>Phone: <a href="tel:<?php the_field( 'office_phone' ); ?>"><?php the_field( 'office_phone' ); ?></a></p>
 
-<?php endif;?>
+
+<?php } ?> 
+
+
 
 <br/>
 
 <?php if(get_field('office_address')):?>
 
-<p><?php the_field( 'office_address' ); ?></p>
 
+<?php $address = get_field('office_address');
+	
+	
+	$addressCleaned = str_replace(' ', '%20', $address); // this works but doesnt echo in ahref below?
+	
+?>
+	
+	
+	<a href="https://www.google.com/maps/search/?api=1&query=<?php echo $addressCleaned;?>" target="_blank">
+		
+		<?php the_field('office_address');?>
+		
+	</a>
+	
+	
+<!-- https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2C%20Washington%2C%20District%20of%20Columbia%2C%2020003 -->
 
-^  (note if acf has link use that, otherwise try to automatically generate into google maps link)	
 
 <br/>
 <br/>
 
 <?php endif;?>
 
-<!--
-	
-
-	
-https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2C%20Washington%2C%20District%20of%20Columbia%2C%2020003
--->
 
 
 <br/>
@@ -92,7 +109,7 @@ https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2
 	 $mymain_queryone = new WP_Query($new_argsone); while($mymain_queryone->have_posts()) : $mymain_queryone->the_post();
 	 
 	
-	 if(get_field('website_link') == ('NULL')) {
+	 if(get_field('website_link') == ('NULL') || empty(get_field('website_link'))) {
 		 
 		 
 		 }
@@ -144,11 +161,6 @@ if ( $terms && ! is_wp_error( $terms ) ) {
  } ?>
 
 
-
-
-
-
-
 <hr/>
 
 <br/>
@@ -158,9 +170,6 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 <!-- attorneys -->
 
 <h2><?php the_field( 'lawfirm_parent_name' ); ?>'s Lawyers in <?php the_field( 'office_city' ); ?></h2>
-
-
-
 
 
 
@@ -189,25 +198,14 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 
 	$lawyerposts = new Wp_Query( $lawyer_args ); 
 	
+
+	$lawyer_ids = $lawyerposts->posts;
+
+
+
+ $officeid = get_field('office_id');
 	
-//$lawyer_ids = wp_list_pluck( $lawyerposts->posts, 'ID' );
-
-// print_r($lawyer_ids);
-
-//$lawyer_ids = array(2540);	
-
-$lawyer_ids = $lawyerposts->posts;
-
-
-
-
-	
-	 ?>
-	
-	
-	<?php $officeid = get_field('office_id');?>
-	
-	<?php $new_args = array(
+	 $new_args = array(
     'post_type' => 'lawyer',
     'posts_per_page' => -1,
 		'post__in' => $lawyer_ids, // pluck wasnt showing right array with integers
@@ -280,7 +278,12 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 
 
 
-<?php if(get_field('school_one_name')):?>
+<?php if(get_field('school_one_name') == ('NULL') || empty(get_field('school_one_name'))) {
+	
+	
+}
+
+else { ?>
 
 
 <br/>
@@ -303,12 +306,16 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 	<?php endif;?>
 		
 
-<?php endif;?>
+<?php }?>
 
 
 
 
-<?php if(get_field('school_two_name')):?>
+<?php if(get_field('school_two_name') == ('NULL') || empty(get_field('school_two_name'))) {
+	
+}
+
+else { ?>
 	
 	<br/>
 	
@@ -332,7 +339,7 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 	<?php endif;?>
 		
 
-<?php endif;?>
+<?php }?>
 
    </div><!-- attorney_single_wrapper -->
              	
@@ -343,7 +350,7 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 
 <br/>
 <br/>
-(^ hide education if these say NULL!)
+
 
 
 </div><!-- attorney_wrapper -->

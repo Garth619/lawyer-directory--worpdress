@@ -66,7 +66,17 @@ Lawfirm: <a href="<?php bloginfo('url');?>/office/<?php echo $lawfirmslug;?>"><?
 <br/>
 <br/>
 
+<?php if(get_field('office_phone', $lawfirmid) == ('NULL') || empty(get_field('office_phone', $lawfirmid))) {
+	
+	
+	}
+	
+	else {?>
+
 Phone: <a href="tel:<?php the_field('office_phone', $lawfirmid);?>"><?php the_field('office_phone', $lawfirmid);?></a>
+
+
+<?php } ?>
 
 <br/>
 <br/>
@@ -108,10 +118,17 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 <?php endif;?>
 
 
-<?php if(get_field('school_one_name')):?>
+<?php if(get_field('school_one_name') == ('NULL') || empty(get_field('school_one_name'))) {
+	
+	
+}
 
+else { ?>
 
+ 
 
+<br/>
+<br/>
 
 	<h2>Education</h2>
 
@@ -126,25 +143,27 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 	<?php if(get_field('school_one_year_graduated')):?>
 
 		<p>Year Graduated: <?php the_field( 'school_one_year_graduated' ); ?></p>
-			<?php the_field( 'office_phone' ); ?>
 
 	<?php endif;?>
 		
 
-<?php endif;?>
+<?php }?>
 
 
 
 
-<?php if(get_field('school_two_name')):?>
+<?php if(get_field('school_two_name') == ('NULL') || empty(get_field('school_two_name'))) {
+	
+}
 
+else { ?>
+	
 	<br/>
 	
 	<hr/>
-	
+	<br/>
 	<br/>
 	
-	<br/>
 
 	<p>School: <?php the_field( 'school_two_name' ); ?></p>
 	
@@ -161,11 +180,9 @@ if ( $terms && ! is_wp_error( $terms ) ) :
 	<?php endif;?>
 		
 
-<?php endif;?>
+<?php }?>
 
-<br/>
-<br/>
-(^ hide education if these say NULL!)
+
 
 
 </div>
