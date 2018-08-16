@@ -1,19 +1,43 @@
 <?php get_header(); ?>
 
 
+<?php 
+
+	$taxlocations = 'location';
+	$taxpracticeareas = 'office_practice_area';
+	
+	$lawfirm_location_currentstate = get_query_var( 'office_location_currentstate');
+	$lawfirm_location_currentcity = get_query_var( 'office_location_currentcity');
+	
+	
+	// these are different than the pa querys on the other templates but these shoudl still go in the functions.php 
+	
+	// state url query -> state id conversion
+	
+	$statetermslug = get_term_by('slug', $lawfirm_location_currentstate, $taxlocations);
+	
+	$statetitle = $statetermslug->name;
+	
+	// city url query -> city id conversion
+	
+	$citytermslug = get_term_by('slug', $lawfirm_location_currentcity, $taxlocations);
+	
+	$citytermtitle = $citytermslug->name;
+	
+?>
+
+
 <div class="section_inner">
 	
-
-	
-	<div class="breadcrumb">
+<div class="breadcrumb">
 	
 	<a href="<?php bloginfo('url');?>">Home</a>
 	
 	<a href="<?php the_permalink(554158);?>">Locations</a>
 	
-	<a href="<?php bloginfo('url');?>/lawyers-location/locations/<?php echo get_query_var( 'office_location_currentstate');?>"><?php echo get_query_var( 'office_location_currentstate');?></a>
+	<a href="<?php bloginfo('url');?>/lawyers-location/locations/<?php echo $lawfirm_location_currentstate;?>"><?php echo $statetitle;?></a>
 	
-	<a><?php echo get_query_var( 'office_location_currentcity');?></a>
+	<a><?php echo $citytermtitle;?></a>
 	
 	<br/>
 	<br/>
@@ -24,14 +48,10 @@
 
 <?php
 	
-	$taxlocations = 'location';
-	$taxpracticeareas = 'office_practice_area';
-	
-	$lawfirm_location_currentstate = get_query_var( 'office_location_currentstate');
-	$lawfirm_location_currentcity = get_query_var( 'office_location_currentcity');
 	
 	
-	echo '<h1>' . $lawfirm_location_currentcity . ' Lawyers</h1>';
+	
+	echo '<h1>' . $citytermtitle . ' Lawyers</h1>';
     
 
 	     

@@ -18,7 +18,7 @@
 	
 	$patermsid = $patermslug->term_taxonomy_id;
 	
-	//echo $patermsid;
+	$patermstitle = $patermslug->name;
 	
 	// state url query -> state id conversion
 	
@@ -26,7 +26,7 @@
 	
 	$statetermid = $statetermslug->term_taxonomy_id;
 	
-	// echo $statetermid;
+	$statetermtitle = $statetermslug->name;
 	
 	// city url query -> city id conversion
 	
@@ -34,7 +34,8 @@
 	
 	$citytermid = $citytermslug->term_taxonomy_id;
 	
-	// echo $citytermid;
+	$citytermtitle = $citytermslug->name;
+	
 	
 ?>
 
@@ -46,11 +47,11 @@
 	
 	<a href="<?php the_permalink(554156);?>">Practice Areas</a> 
 	
-	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo $currentpracticearea;?>"><?php echo  $currentpracticearea;?></a>
+	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo $currentpracticearea;?>"><?php echo  $patermstitle;?></a>
 	
-	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>/<?php echo get_query_var( 'currentstate');?>"><?php echo $currentstate;?></a>
+	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>/<?php echo get_query_var( 'currentstate');?>"><?php echo $statetermtitle;?></a>
 	
-	<a><?php echo $currentcity;?></a>
+	<a><?php echo $citytermtitle;?></a>
 	
 	<br/>
 	<br/>
@@ -59,7 +60,7 @@
 	
 </div><!-- breadcrumb -->
 
-<h1><?php echo get_query_var( 'currentcity');?> <?php echo get_query_var( 'office_pa');?> Lawyers</h1>
+<h1><?php echo $citytermtitle;?> <?php echo $patermstitle;?> Lawyers</h1>
 
 
 <?php if(get_field('pa_location_content_blocks','option')) {

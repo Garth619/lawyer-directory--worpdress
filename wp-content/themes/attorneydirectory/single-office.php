@@ -66,6 +66,7 @@ if( $terms ) {
 <br/>
 <br/>
 
+<?php endif;?>
 
 <!--
 	
@@ -91,22 +92,29 @@ https://www.google.com/maps/search/?api=1&query=1200%20Pennsylvania%20Ave%20SE%2
 	 $mymain_queryone = new WP_Query($new_argsone); while($mymain_queryone->have_posts()) : $mymain_queryone->the_post();
 	 
 	
-	 if(get_field('website_link')):?>
+	 if(get_field('website_link') == ('NULL')) {
+		 
+		 
+		 }
+		 
+	 else { ?>
      	
      <a href="<?php the_field( 'website_link' ); ?>" target="_blank">Visit Site</a>
      
      <br/>
      <br/>
      
-     (^ if acf has value of NULL, don't display)<br/>
-     
      (regex if already has http:// or https:// or http://www. or https://www. leave alone otherwise fix to have //)
      		
      <br/>
      <br/>
+		 
+	 <?php }
+	 
+	 
+	 
      	
-     	<?php endif;
-
+   
                     	
                   
  endwhile; 
@@ -137,7 +145,7 @@ if ( $terms && ! is_wp_error( $terms ) ) {
 
 
 
-<?php endif;?>
+
 
 
 

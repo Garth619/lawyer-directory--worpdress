@@ -3,27 +3,31 @@
 
 <?php 
 	
+	// this whole thing can probably be listed only once in the functions.php across all templates 
+	
 	$currentpracticearea = get_query_var( 'office_pa');
 	$currentstate = get_query_var( 'currentstate');
 	
 	$taxlocations = 'location';
 	$taxpracticeareas = 'office_practice_area';
 	
-	// pa url query -> pa id conversion
+	
+
+	// pa url query -> pa id/title conversion
 	
 	$patermslug = get_term_by('slug', $currentpracticearea, $taxpracticeareas);
 	
 	$patermsid = $patermslug->term_taxonomy_id;
 	
-	//echo $patermsid;
+	$patermstitle = $patermslug->name;
 	
-	// state url query -> state id conversion
+	// state url query -> state id/title conversion
 	
 	$statetermslug = get_term_by('slug', $currentstate, $taxlocations);
 	
 	$statetermid = $statetermslug->term_taxonomy_id;
 	
-	// echo $statetermid;
+	$statetermtitle = $statetermslug->name;
 	
 ?>
 
@@ -37,9 +41,9 @@
 	
 	<a href="<?php the_permalink(554156);?>">Practice Areas</a>
 	
-	<a href="<?php bloginfo('url');?>/lawyers-practice/<?php echo $currentpracticearea;?>"><?php echo $currentpracticearea;?></a>
+	<a href="<?php bloginfo('url');?>/lawyers-practice/<?php echo $currentpracticearea;?>"><?php echo $patermstitle;?></a>
 	
-	<a><?php echo $currentstate;?></a>
+	<a><?php echo $statetermtitle;?></a>
 	
 	<br/>
 	<br/>
@@ -48,7 +52,7 @@
 	
 </div><!-- breadcrumb -->
 
-<h1><?php echo $currentstate;?> <?php echo $currentpracticearea;?> Lawyers</h1>
+<h1><?php echo $statetermtitle;?> <?php echo $patermstitle;?> Lawyers</h1>
 
 
 <?php if(get_field('pa_location_content_blocks','option')) {
@@ -102,7 +106,7 @@
 
 // print_r($myposts->posts);
 
-
+		// this might be redundant i think i already made a query like this up above
 		$parentid = get_term_by('slug', $currentstate, 'location');$currentparentid = $parentid->term_id;
 
 
