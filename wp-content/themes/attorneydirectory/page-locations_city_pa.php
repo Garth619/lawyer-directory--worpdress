@@ -1,44 +1,7 @@
 <?php get_header(); ?>
 
-<div class="section_inner">
-	
-<div class="breadcrumb">
-	
-	<a href="<?php bloginfo('url');?>">Home</a>
-	
-	<a href="<?php the_permalink(554156);?>">Practice Areas</a> 
-	
-	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>"><?php echo get_query_var( 'office_pa');?></a>
-	
-	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>/<?php echo get_query_var( 'currentstate');?>"><?php echo get_query_var( 'currentstate');?></a>
-	
-	<a><?php echo get_query_var( 'currentcity');?></a>
-	
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	
-</div><!-- breadcrumb -->
 
-<h1><?php echo get_query_var( 'currentcity');?> <?php echo get_query_var( 'office_pa');?> Lawyers</h1>
-
-<div class="content">
-
-
-
-</div>
-
-<br/>
-<br/>
-
-and this one 
-
-Browse by Lawfirm
-
-<?php 
-	
-	
+<?php 	
 	
 	$currentcity = get_query_var( 'currentcity');
 	$currentstate = get_query_var( 'currentstate');
@@ -49,6 +12,85 @@ Browse by Lawfirm
 	$taxpracticeareas = 'office_practice_area';
 	
 	
+	// pa url query -> pa id conversion
+	
+	$patermslug = get_term_by('slug', $currentpracticearea, $taxpracticeareas);
+	
+	$patermsid = $patermslug->term_taxonomy_id;
+	
+	//echo $patermsid;
+	
+	// state url query -> state id conversion
+	
+	$statetermslug = get_term_by('slug', $currentstate, $taxlocations);
+	
+	$statetermid = $statetermslug->term_taxonomy_id;
+	
+	// echo $statetermid;
+	
+	// city url query -> city id conversion
+	
+	$citytermslug = get_term_by('slug', $currentcity, $taxlocations);
+	
+	$citytermid = $citytermslug->term_taxonomy_id;
+	
+	// echo $citytermid;
+	
+?>
+
+<div class="section_inner">
+	
+<div class="breadcrumb">
+	
+	<a href="<?php bloginfo('url');?>">Home</a>
+	
+	<a href="<?php the_permalink(554156);?>">Practice Areas</a> 
+	
+	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo $currentpracticearea;?>"><?php echo  $currentpracticearea;?></a>
+	
+	<a class="" href="<?php bloginfo('url');?>/lawyers-practice/<?php echo get_query_var( 'office_pa');?>/<?php echo get_query_var( 'currentstate');?>"><?php echo $currentstate;?></a>
+	
+	<a><?php echo $currentcity;?></a>
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+</div><!-- breadcrumb -->
+
+<h1><?php echo get_query_var( 'currentcity');?> <?php echo get_query_var( 'office_pa');?> Lawyers</h1>
+
+
+<?php if(get_field('pa_location_content_blocks','option')) {
+		 		 
+		 	echo "<br/><br/>";
+		 			 
+		 	while(has_sub_field('pa_location_content_blocks','option')) {
+			 			 
+			 	if(get_sub_field('current_taxonomy') == $patermsid && (get_sub_field('current_location_taxonomy_state') == $statetermid) && get_sub_field('current_location_taxonomy_city') == $citytermid ) {
+			 			 
+			 		the_sub_field('block');
+		 			 		
+		 		}
+		 			 	
+		 	}
+			
+			if(is_user_logged_in()) {
+	
+		 			echo '<a href="' . get_bloginfo('url') .  '/wp-admin/admin.php?page=pa-locations-content-blocks-settings">Edit</a><br/><br/><br/>';
+			 		
+				}
+		 		 
+		}	?>
+
+
+
+
+
+Browse by Lawfirm
+
+<?php 
 	
 	$query_args = array (
 		'post_type' => 'office',

@@ -50,9 +50,6 @@
 
 <h1><?php echo $currentstate;?> <?php echo $currentpracticearea;?> Lawyers</h1>
 
-do this one still
-
-
 
 <?php if(get_field('pa_location_content_blocks','option')) {
 		 		 
@@ -70,7 +67,7 @@ do this one still
 			
 			if(is_user_logged_in()) {
 	
-		 			echo '<a href="' . get_bloginfo('url') .  '/wp-admin/admin.php?page=content-blocks-settings">Edit</a><br/><br/><br/>';
+		 			echo '<a href="' . get_bloginfo('url') .  '/wp-admin/admin.php?page=pa-locations-content-blocks-settings">Edit</a><br/><br/><br/>';
 			 		
 				}
 		 		 
