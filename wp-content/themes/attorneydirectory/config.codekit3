@@ -316,6 +316,13 @@
 		"oAP": "\/search.php",
 		"oF": 0
 		},
+	"\/searchform.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/searchform.php",
+		"oF": 0
+		},
 	"\/sidebar.php": {
 		"cB": 0,
 		"ft": 8192,

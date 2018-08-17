@@ -1,4 +1,3 @@
-
 <?php if ( ! have_posts() ) : ?>
 	
 	
@@ -18,9 +17,36 @@
 
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-	<?php the_content();?>
+		
+		<div class="single_lawfirm">
+		
+			<a href="<?php the_permalink();?>"><?php the_title();?></a><br/><br/>
 			
-		<?php edit_post_link( __( 'Edit'), '', '' ); ?>
+			<?php if(get_field('office_phone') == ('NULL') || empty(get_field('office_phone'))) {
+	
+			}
+		 
+	
+			else { ?>
+		 
+			<p>Phone: <a href="tel:<?php the_field( 'office_phone' ); ?>"><?php the_field( 'office_phone' ); ?></a></p>
+
+
+			<?php } ?> 
+			
+			<?php if(get_field('office_address')):?>
+
+
+				<?php the_field('office_address');?>
+
+
+			<?php endif;?>
+
+
+			<?php edit_post_link( __( 'Edit'), '', '' ); ?>
+			
+		
+		</div><!-- single_lawfirm -->
 			
 		
 <?php endwhile; // end of loop ?>
@@ -29,15 +55,4 @@
 
 
 
-<?php if (  $wp_query->max_num_pages > 1 ) : ?>
-	
-	<div id="nav-below" class="navigation">
-		
-		<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts' ) ); ?></div>
-			
-		<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>') ); ?></div>
-	
-	</div><!-- #nav-below -->
-
-<?php endif; ?>
-
+<?php wpbeginner_numeric_posts_nav(); ?>

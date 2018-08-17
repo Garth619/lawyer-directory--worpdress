@@ -1,33 +1,42 @@
 <?php get_header(); ?>
 
-	
+
+<div class="section_inner">	
 
 <?php if ( have_posts() ) : ?>
-				
-				
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentyten' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-				
-				
-				<?php get_template_part( 'loop', 'search' ); ?>
-				
-				<?php else : ?>
-				
-				<div id="post-0" class="post no-results not-found">
-					
-					<h2 class="entry-title">Nothing Found</h2>
-					
-					<div class="entry-content">
-						
-						<p>Sorry, but nothing matched your search criteria. Please try again with some different keywords.</p>
-						
-						<?php get_search_form(); ?>
-					
-					</div><!-- .entry-content -->
-				
-				</div><!-- #post-0 -->
 
-<?php endif; ?>
+	
+				
+	<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentyten' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+	
+	<div class="search"><?php get_search_form(); ?></div><!-- search -->
+				
+	<div class="search_wrapper">
+			
+		<?php get_template_part( 'loop', 'search' ); ?>
+	
+	</div><!-- search_wrapper -->
+				
+				
+		<?php else : ?>
 		
+				
+		<h1>Nothing Found</h1>
+		
+					
+		<p>Sorry, but nothing matched your search criteria. Please try again with some different keywords.</p>
+		
+		<div class="search_wrapper">
+						
+				
+		<?php get_search_form(); ?>
+		
+		</div><!-- search_wrapper -->
+					
+	<?php endif; ?>
+	
+	
 
-<?php // get_sidebar(); ?>
+</div><!-- section_inner -->
+		
 <?php get_footer(); ?>

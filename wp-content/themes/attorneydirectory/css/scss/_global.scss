@@ -136,6 +136,54 @@ ul {
 	margin-top:45px;
 }
 
+.search_wrapper {
+	margin:45px 0;
+}
+
+
+.single_lawfirm {
+	margin-bottom:25px;
+	padding:45px 0;
+	border-bottom:1px solid #c9c9c9;
+}
+
+.navigation {
+	ul {
+		column-count:1;
+		li {
+			display: inline-block;
+			width:auto;
+			margin:0 25px 0 0px;
+		}
+	}
+}
+
+
+.search {
+	margin-top:30px;
+}
+
+
+.search_form {
+	form {
+		display: flex;
+	}
+	input[type="text"] {
+		padding:5px 10px;
+		font-size:16px;
+		width:300px;
+		border:1px solid  #c9c9c9;
+	}
+	input[type="submit"] {
+		background-image: -webkit-linear-gradient( 90deg, rgb(238,59,80) 0%, rgb(242,119,75) 100%);
+		color:#fff;
+		font-size:16px;
+		padding:5px 15px;
+		border:1px solid transparent;
+		font-weight: 400;
+	}
+}
+
 
 @media screen and (max-width: 1095px) {
 	

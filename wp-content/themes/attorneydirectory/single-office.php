@@ -122,6 +122,10 @@ if( $terms ) {
      <br/>
      
      (regex if already has http:// or https:// or http://www. or https://www. leave alone otherwise fix to have //)
+     
+     <br/><br/>
+     
+     like http://lawyerdirectory.1p21.io/office/hennigan-bennett-dorman-llp/
      		
      <br/>
      <br/>
@@ -235,7 +239,18 @@ if ( $terms && ! is_wp_error( $terms ) ) {
      
 		 <br/>
 
-		 <img style="width:200px;" src="<?php bloginfo('template_directory');?>/images/default.jpg"/>
+		 <?php $lawyer_profile_image = get_field( 'lawyer_profile_image' ); ?>
+	
+		 	<?php if ( $lawyer_profile_image ) { ?>
+		
+		 		<img src="<?php echo $lawyer_profile_image['url']; ?>" alt="<?php echo $lawyer_profile_image['alt']; ?>" />
+
+		 	<?php } else { ?>
+
+		 	<img style="width:200px;" src="<?php bloginfo('template_directory');?>/images/default.jpg"/>
+
+		 <?php }?>
+
 
 		 <br/>
 		 <br/>
@@ -358,7 +373,7 @@ else { ?>
 
 <br/><br/>
 
-(also maybe other lawfirm locations with links can go here?)
+<!-- (also maybe other lawfirm locations with links can go here?) -->
 
 </div><!-- secton inner -->
 

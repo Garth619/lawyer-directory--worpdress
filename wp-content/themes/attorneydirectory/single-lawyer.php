@@ -46,7 +46,17 @@
 <br/>
 <br/>
 
-<img style="width:200px;" src="<?php bloginfo('template_directory');?>/images/default.jpg"/>
+<?php $lawyer_profile_image = get_field( 'lawyer_profile_image' ); ?>
+	
+	<?php if ( $lawyer_profile_image ) { ?>
+		
+		<img src="<?php echo $lawyer_profile_image['url']; ?>" alt="<?php echo $lawyer_profile_image['alt']; ?>" />
+
+	<?php } else { ?>
+
+		<img style="width:200px;" src="<?php bloginfo('template_directory');?>/images/default.jpg"/>
+
+<?php }?>
 
 <br/>
 <br/>
